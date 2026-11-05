@@ -15,7 +15,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 
 ## B. Game layer and data
 - [x] 8. Shape catalog asset: editable in the Inspector, with a button to fill the 13 starting shapes. *You create the asset.*
-- [ ] 9. Puzzle session: takes move and let-go commands, updates the board, reports what happened.
+- [x] 9. Puzzle session: takes move and let-go commands, updates the board, reports what happened.
 - [ ] 10. Test board: temporary 6x6 layout as editable data, no L shapes. *You create the asset.*
 
 ## C. Scene (you build it in Unity from my steps; check by pressing Play)

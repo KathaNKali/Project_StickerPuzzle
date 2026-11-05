@@ -11,7 +11,7 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 **Doors**
 - A door sits on a board edge and has a color, position and opening size.
 - Opening size is measured along its edge: rows covered on left/right edges, columns covered on top/bottom edges.
-- Boards have 2 to 4 exits. Checked when a level is created (Phase 2), since a board gets its doors one at a time.
+- Boards have 2 to 4 exits. Checked when a board is built from its layout, since a board gets its doors one at a time.
 - Two doors of the same color cannot share a board corner, so a block in a corner can never touch two of its own doors (designer: not allowed for now, may revisit).
 - A door's position is its first column from the left (top/bottom edges) or first row from the bottom (left/right edges).
 
@@ -22,7 +22,7 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 - Partial overlap is not allowed (confirmed by designer). See [decision 002](../decisions/002-exit-fit-rule.md).
 - The exit happens when the player lets go of the block there (confirmed by designer).
 - The block must have moved at least one cell during that drag. Clicking without moving, or only bumping a wall, never exits it (confirmed by designer).
-- No level may start with a block already touching a door it fits (confirmed by designer). Checked when a level is created.
+- No level may start with a block already touching a door it fits (confirmed by designer). Checked when a board is built from its layout.
 - It leaves by travelling straight out, perpendicular to the edge, and slides fully out.
 
 **No failure**

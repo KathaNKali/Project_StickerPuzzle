@@ -14,5 +14,7 @@ Shows the board in 3D and lets the player drag blocks (Phase 1). Holds no game s
 ## Data
 Reads board state from Game. Colors map to materials by color ID.
 
+The Phase 1 test board is `Assets/_Project/Data/TestBoard.asset` (`BoardLayoutAsset`): temporary, editable, with Inspector buttons to fill and check it. A test plays through a full solution of the default layout.
+
 ## Public interface
 Defined in Phase 1.
