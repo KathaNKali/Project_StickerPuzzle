@@ -198,6 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickerPuzzle.Presentation::StickerPuzzle.Presentation.BoardView
   cellPrefab: {fileID: 6489321316147036414, guid: 862152213dda14693ac037390379a77c, type: 3}
   boardBase: {fileID: 1853708785}
+  partPrefab: {fileID: 7601781245536878703, guid: 80463751d75aa48d688219d79c8ccd4b, type: 3}
+  colorPalette: {fileID: 11400000, guid: aca9ee942f725444d8467be894566e66, type: 2}
   baseMargin: 0.3
 --- !u!4 &751714793
 Transform:

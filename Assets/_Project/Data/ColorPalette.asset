@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9847ff6f6a74cd5811206928bdef87, type: 3}
+  m_Name: ColorPalette
+  m_EditorClassIdentifier: StickerPuzzle.Presentation::StickerPuzzle.Presentation.ColorPaletteAsset
+  colors:
+  - colorId: blue
+    material: {fileID: 2100000, guid: cb49113752baa4fdda89b16c029e1e92, type: 2}
+  - colorId: red
+    material: {fileID: 2100000, guid: a222ad9c7fdd04a6f8e680f66303455a, type: 2}
+  - colorId: yellow
+    material: {fileID: 2100000, guid: 914bfdd6749d24b3c9336e97372780ff, type: 2}

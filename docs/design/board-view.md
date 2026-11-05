@@ -23,6 +23,8 @@ The board is centered on the world origin and lies flat: grid X is world X, grid
 
 ## Public interface
 - `GameBootstrap`: builds the board and session from the data assets at start, and exposes `Session`.
-- `BoardView`: `ShowBoard(board)` draws the base and cells.
-- `BoardGrid`: `CellToWorld(cell, worldHeight)` converts grid to world.
+- `BoardView`: `ShowBoard(board)` draws the base, cells, doors and blocks.
+- `BoardGrid`: `CellToWorld(cell, worldHeight)`, `GetDoorCenter`, `GetDoorSize` convert grid data to world.
+- `ColorPaletteAsset` (`Assets/_Project/Data/ColorPalette.asset`): matches each color ID to a material. IDs must match the layout exactly, such as `red`.
+- `BlockView`: one per block, with `Model` as its game data.
 - `BoardCamera`: `SetBoardSize(width, height)`. Pitch and padding are tunable in the Inspector.
