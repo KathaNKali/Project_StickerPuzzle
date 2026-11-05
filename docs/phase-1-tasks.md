@@ -11,7 +11,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 - [x] 4. Moving: one step in a direction; walls and other blocks stop it.
 - [x] 5. Doors: side, position, opening size, color, and which cells they touch.
 - [x] 6. Exit check: `CanExitThroughDoor` (color, touching, fits). Rectangles only; L shapes on hold.
-- [ ] 7. Exiting: remove the block and detect a cleared board.
+- [x] 7. Exiting: remove the block and detect a cleared board.
 
 ## B. Game layer and data
 - [ ] 8. Shape catalog asset: editable in the Inspector, with a button to fill the 13 starting shapes. *You create the asset.*

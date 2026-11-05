@@ -14,8 +14,12 @@ The fixed list of block shapes. Levels only pick from it; shapes are never inven
 ## Starting catalog
 1x1, 1x2, 2x1, 1x3, 3x1, 2x2, 2x3, 3x2, 3x3, plus 4 L-tromino orientations.
 
+Size names mean width x height, so 1x2 is 1 wide and 2 tall (assumption, designer has not confirmed).
+
+L IDs name the empty corner of their 2x2 area: `L_EmptyTopRight`, `L_EmptyTopLeft`, `L_EmptyBottomRight`, `L_EmptyBottomLeft`.
+
 ## Data
-Each entry: stable ID, cell offsets, family. Authored as a ScriptableObject and converted to a plain C# record for Core.
+Each entry: stable ID, cell offsets, family (`Rectangle` or `L`). Authored in `Assets/_Project/Data/ShapeCatalog.asset` (`ShapeCatalogAsset`), with Inspector buttons to fill the starting shapes and check the list. Converted to a plain `ShapeCatalog` for Core. Changing an ID after levels use it breaks those levels.
 
 ## Public interface
-`ShapeDefinition.TryCreate(id, family, cells, out shape, out error)`. A shape exposes `Id`, `Family`, `Cells`, `Width`, `Height`.
+`ShapeDefinition.TryCreate(id, family, cells, out shape, out error)`. A shape exposes `Id`, `Family`, `Cells`, `Width`, `Height`. `ShapeCatalog.TryGet(id, out shape)` finds a shape. `ShapeCatalogAsset.TryBuild(out catalog, out errors)` converts the asset.
