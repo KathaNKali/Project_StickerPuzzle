@@ -1,23 +1,25 @@
 # Workflow
 
 ## Who does what
-- **Designer:** makes all changes in the Unity editor: scenes, prefabs, materials, wiring, data assets.
-- **Claude:** writes code and tests, then gives short numbered steps to integrate them in Unity: which menu, which object, which field, and what to expect.
-- Claude changes scenes, prefabs or assets, or drives Unity, only when the designer asks for help.
-- Tests: if Unity is open, Claude asks the designer to close it or to run them from Window > General > Test Runner.
+The designer does the Unity and git work by hand, to learn the craft.
+- **Designer:** makes all changes in the Unity editor (scenes, prefabs, materials, wiring, data assets) and does all git work (branch, commit, merge, push).
+- **Claude:** writes efficient, well-optimized code and tests, then gives short numbered steps to integrate them in Unity (which menu, which object, which field, what to expect) and the GitHub Desktop git steps, with a one-line reason for each.
+- Claude changes scenes, prefabs or assets, drives Unity, or runs git changes only when the designer asks for help. Read-only git commands such as `status` and `diff` are fine.
+- Claude asks when anything is unclear rather than guessing.
+- **Tests:** the designer runs them from Window > General > Test Runner and reports any failures. Claude says which tests to run and what a pass looks like, and does not call code working until the result is back.
 
 ## Session routine
 **Start:** read [STATUS](STATUS.md), then only the docs the task needs.
 
-**End:** run the tests; update STATUS (and ROADMAP if a phase changed); record decisions; tell the designer what to playtest and what feedback is needed.
+**End:** the designer runs the tests; update STATUS (and ROADMAP if a phase changed); record decisions; tell the designer what to playtest and what feedback is needed.
 
 Work on one system per session.
 
 ## Adding a feature or system
 1. Write or update `docs/design/<system>.md`.
 2. Show the designer a short implementation plan. **Wait for approval.**
-3. Implement in small steps, with tests, committing per step.
-4. Verify by running tests and builds, not by re-reading code.
+3. Implement in small steps, with tests. After each step, give the designer the commit to make.
+4. Verify by the designer running tests and builds, not by re-reading code.
 5. Update [STATUS](STATUS.md) and [ROADMAP](ROADMAP.md). Record decisions in `docs/decisions/`.
 6. Give the Unity integration steps, then what to playtest and what feedback is needed.
 
@@ -28,8 +30,8 @@ Claude never invents game design. Unclear points go under "Questions for the des
 - `main` holds approved work. Never commit directly to it.
 - One branch per phase or system, for example `phase-1-playable-board`.
 - One small commit per step, with a message saying what changed and why. Tests pass before each commit.
-- Merge to `main` and push only after designer approval.
-- LFS tracks art and audio (`.gitattributes`). Requires Git LFS on the machine, plus `git lfs install` once.
+- The designer does the merging to `main` and pushing, when ready.
+- LFS tracks art and audio (`.gitattributes`). Use GitHub Desktop, which has its own copy of Git LFS. Terminal git needs Git LFS installed separately.
 
 ## Testing
 - Rules in Core and Game get EditMode tests. New rule, new test.

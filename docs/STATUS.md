@@ -9,14 +9,14 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Nothing. Waiting for designer approval of the Phase 1 plan.
+- Phase 1, task 1 (grid basics): code written, waiting for the designer's Test Runner result.
 
 ## Next
-- Phase 1: playable board.
+- Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).
 
 ## Blockers
 - None for Phase 1 (graybox has no art files).
-- **Before any art or audio is added:** install Git LFS. Git settings on this machine require it, but it is not installed, so git refuses `.png` and similar files.
+- Git LFS works through GitHub Desktop, which has its own copy. Terminal git cannot handle `.png` and similar files unless Git LFS is installed separately, so use Desktop.
 
 ## Not verified
 - No WebGL or Android build has finished. The designer chose to skip builds for now; the build scripts are untested.

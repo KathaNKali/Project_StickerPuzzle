@@ -32,6 +32,8 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 - How L shapes are measured against a door. Phase 1 test boards use no L shapes. Needs an answer before the generator can use them.
 
 ## Data
+Grid: (0, 0) is the bottom-left cell seen from above; X grows right, Y grows up.
+
 Board: width, height, doors, blocks. Door: side, position, opening size, color. Block: shape ID, grid position, color. Color and image are independent; color decides the exit, image is a Phase 5 concern.
 
 ## Public interface

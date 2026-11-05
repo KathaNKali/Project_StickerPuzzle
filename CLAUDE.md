@@ -6,7 +6,9 @@ Casual 3D sliding-block puzzle + 2D sticker collection. Concept: [docs/design/00
 - Read [docs/STATUS.md](docs/STATUS.md) first.
 - Read only the docs needed for the task.
 - Update STATUS.md at the end of every session.
-- The designer makes all changes in the Unity editor. Claude writes code and gives clear integration steps, and steps in on the Unity side only when asked. Detail: [docs/WORKFLOW.md](docs/WORKFLOW.md).
+- The designer makes all changes in the Unity editor and does all git work, to learn the craft. Claude writes code, gives clear integration and git steps, and steps in only when asked. Detail: [docs/WORKFLOW.md](docs/WORKFLOW.md).
+- Never run `git add`, `commit`, `merge` or `push` unless the designer asks.
+- Keep the game well optimized and efficient. Ask questions when anything is unclear.
 - Process (approval gates, per-system steps): [docs/WORKFLOW.md](docs/WORKFLOW.md).
 
 ## Engine and platforms
