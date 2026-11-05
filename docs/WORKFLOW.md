@@ -1,5 +1,11 @@
 # Workflow
 
+## Who does what
+- **Designer:** makes all changes in the Unity editor: scenes, prefabs, materials, wiring, data assets.
+- **Claude:** writes code and tests, then gives short numbered steps to integrate them in Unity: which menu, which object, which field, and what to expect.
+- Claude changes scenes, prefabs or assets, or drives Unity, only when the designer asks for help.
+- Tests: if Unity is open, Claude asks the designer to close it or to run them from Window > General > Test Runner.
+
 ## Session routine
 **Start:** read [STATUS](STATUS.md), then only the docs the task needs.
 
@@ -13,7 +19,7 @@ Work on one system per session.
 3. Implement in small steps, with tests, committing per step.
 4. Verify by running tests and builds, not by re-reading code.
 5. Update [STATUS](STATUS.md) and [ROADMAP](ROADMAP.md). Record decisions in `docs/decisions/`.
-6. Tell the designer what to playtest and what feedback is needed.
+6. Give the Unity integration steps, then what to playtest and what feedback is needed.
 
 ## Design questions
 Claude never invents game design. Unclear points go under "Questions for the designer" in STATUS.md. An assumption used meanwhile must be labelled as one and kept easy to change.
