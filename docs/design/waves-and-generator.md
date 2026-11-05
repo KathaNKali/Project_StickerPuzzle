@@ -15,6 +15,7 @@ Lets the designer create, check, save and order levels (Phase 2).
 **Generator scene (designer tool, never seen by players)**
 - The designer enters the settings under Data, then clicks **Create** to build and show a board.
 - If the settings cannot work, Create says why instead of making a bad board.
+- A level never starts with a block touching a door it fits, and same-color doors never share a corner. See [puzzle-rules](puzzle-rules.md).
 - **Checker** button: replays the board's solution and says "Solvable" or "Not solvable".
 - A button auto-plays the solution so the designer can watch it.
 - **Save** stores the level under a name in Level Data.

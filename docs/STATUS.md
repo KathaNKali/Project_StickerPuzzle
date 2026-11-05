@@ -9,7 +9,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 8 (shape catalog asset): code written, waiting for the designer's Unity steps and Test Runner result. Tasks 1-7 passed.
+- Phase 1, task 9 (puzzle session): code written, waiting for the designer's Test Runner result. Tasks 1-8 passed.
 
 ## Next
 - Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).
@@ -24,7 +24,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 
 ## Not in git
 - Unity tutorial template files (`Assets/TutorialInfo`, `Assets/Readme.asset`): only the two scripts are in git, in commit `cdb7a37`; the rest is not. Not used by the game. See question 5.
-- `Assets/_Recovery/0.unity`: a Unity recovery scene from 5 Nov, 13:00. Ignored, not deleted. See question 7.
+- `Assets/_Recovery/0.unity`: a Unity recovery scene from 5 Nov, 13:00. Ignored, not deleted. See question 9.
 - `Assets/Resources`: empty folder Unity created.
 
 ## Questions for the designer
@@ -33,5 +33,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 3. **Assumptions to confirm:** a wrong-color door acts as a wall; letting go elsewhere leaves the block in place; a shape's cells must touch side by side; two doors cannot overlap on one edge; shape sizes are width x height.
 4. **Early build:** run one quick build after Phase 1 to catch platform problems early? Recommended.
 5. **Template files:** OK to delete them, along with `Assets/Scenes/SampleScene`? Recommended.
-6. **Names:** final game name and Android ID. Current placeholders: "Sticker Puzzle", `com.kathankali.stickerpuzzle`.
-7. **Recovery scene:** does `Assets/_Recovery/0.unity` hold anything you need? If not, it can be deleted.
+6. **Opposite doors (Phase 2):** on a board as narrow as a block is wide, the block can touch same-color doors on both sides. Which one should it use, or should this be disallowed too?
+7. **Corner doors:** same-color doors sharing a corner are disallowed for now. Revisit later.
+8. **Names:** final game name and Android ID. Current placeholders: "Sticker Puzzle", `com.kathankali.stickerpuzzle`.
+9. **Recovery scene:** does `Assets/_Recovery/0.unity` hold anything you need? If not, it can be deleted.

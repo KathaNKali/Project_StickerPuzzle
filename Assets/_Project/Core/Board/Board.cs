@@ -176,9 +176,31 @@ namespace StickerPuzzle.Core
                 }
             }
 
+            if (SharesCornerWithSameColorDoor(door))
+            {
+                error = $"{door.Side} door at {door.Position} shares a corner with a door of the same color ({door.Color}).";
+                return false;
+            }
+
             doors.Add(door);
             error = null;
             return true;
+        }
+
+        /// <summary>The door this block could leave through right now, or null if there is none.</summary>
+        public Door FindExitDoor(Block block)
+        {
+            RequireOnBoard(block);
+
+            for (var i = 0; i < doors.Count; i++)
+            {
+                if (CanExitThroughDoor(block, doors[i]))
+                {
+                    return doors[i];
+                }
+            }
+
+            return null;
         }
 
         /// <summary>True if this cell is in the board's edge row or column, directly against the door's opening.</summary>
@@ -278,6 +300,34 @@ namespace StickerPuzzle.Core
 
             blocks.Remove(block);
             return true;
+        }
+
+        /// <summary>
+        /// A block in a corner could otherwise touch two doors of its own color at once.
+        /// The designer has ruled this out for now (docs/design/puzzle-rules.md).
+        /// </summary>
+        private bool SharesCornerWithSameColorDoor(Door door)
+        {
+            for (var i = 0; i < doors.Count; i++)
+            {
+                var other = doors[i];
+                if (other.Side != door.Side
+                    && string.Equals(other.Color, door.Color, StringComparison.Ordinal)
+                    && (TouchesAtCell(door, other, new GridPosition(0, 0))
+                        || TouchesAtCell(door, other, new GridPosition(Width - 1, 0))
+                        || TouchesAtCell(door, other, new GridPosition(0, Height - 1))
+                        || TouchesAtCell(door, other, new GridPosition(Width - 1, Height - 1))))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool TouchesAtCell(Door first, Door second, GridPosition cell)
+        {
+            return IsTouchingDoor(first, cell) && IsTouchingDoor(second, cell);
         }
 
         private void RequireOnBoard(Block block)
