@@ -19,7 +19,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 - [x] 10. Test board: temporary 6x6 layout as editable data, no L shapes. *You create the asset.*
 
 ## C. Scene (you build it in Unity from my steps; check by pressing Play)
-- [ ] 11. Empty game scene with a portrait Game view, light and board base.
+- [x] 11. Empty game scene with a portrait Game view, light and board base.
 - [ ] 12. Camera: nearly top-down, fits the whole board on any portrait screen.
 - [ ] 13. Board view: draws the grid cells from game data.
 - [ ] 14. Doors and blocks: gray 3D boxes, colored by game data.
