@@ -89,6 +89,70 @@ namespace StickerPuzzle.Core
             return true;
         }
 
+        /// <summary>
+        /// True if the block can step one cell this way: every cell it would cover
+        /// must be on the board and either free or already part of this same block.
+        /// </summary>
+        public bool CanMove(Block block, Direction direction)
+        {
+            RequireOnBoard(block);
+
+            var target = block.Position.Step(direction);
+            var cells = block.Shape.Cells;
+            for (var i = 0; i < cells.Count; i++)
+            {
+                var cell = target + cells[i];
+                if (!IsInside(cell))
+                {
+                    return false;
+                }
+
+                var occupant = occupancy[IndexOf(cell)];
+                if (occupant != null && occupant != block)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>Steps the block one cell if it can. If not, returns false and changes nothing.</summary>
+        public bool TryMove(Block block, Direction direction)
+        {
+            if (!CanMove(block, direction))
+            {
+                return false;
+            }
+
+            var cells = block.Shape.Cells;
+            for (var i = 0; i < cells.Count; i++)
+            {
+                occupancy[IndexOf(block.Position + cells[i])] = null;
+            }
+
+            block.Position = block.Position.Step(direction);
+            for (var i = 0; i < cells.Count; i++)
+            {
+                occupancy[IndexOf(block.Position + cells[i])] = block;
+            }
+
+            return true;
+        }
+
+        private void RequireOnBoard(Block block)
+        {
+            if (block == null)
+            {
+                throw new ArgumentNullException(nameof(block));
+            }
+
+            if (GetBlockAt(block.Position + block.Shape.Cells[0]) != block)
+            {
+                throw new ArgumentException($"Block {block.Id} is not on this board.", nameof(block));
+            }
+        }
+
         private int IndexOf(GridPosition cell)
         {
             return (cell.Y * Width) + cell.X;

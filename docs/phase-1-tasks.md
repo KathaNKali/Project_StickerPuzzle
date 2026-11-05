@@ -7,7 +7,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 ## A. Rules (code only; check in Test Runner, EditMode tab)
 - [x] 1. Grid basics: cell positions and the 4 directions.
 - [x] 2. Shape definition: ID, cells, family, plus a validity check (max 3x3, no duplicates).
-- [ ] 3. Board and blocks: place blocks and know which cells are taken.
+- [x] 3. Board and blocks: place blocks and know which cells are taken.
 - [ ] 4. Moving: one step in a direction; walls and other blocks stop it.
 - [ ] 5. Doors: side, position, opening size, color, and which cells they touch.
 - [ ] 6. Exit check: `CanExitThroughDoor` (color, touching, fits). Rectangles only; L shapes on hold.

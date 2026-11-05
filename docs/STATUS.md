@@ -9,7 +9,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 3 (board and blocks): code written, waiting for the designer's Test Runner result. Tasks 1-2 passed.
+- Phase 1, task 4 (moving): code written, waiting for the designer's Test Runner result. Tasks 1-3 passed.
 
 ## Next
 - Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).
@@ -23,7 +23,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Gzip WebGL settings: unproven ([decision 004](decisions/004-build-settings.md)).
 
 ## Not in git
-- Unity tutorial template files (`Assets/TutorialInfo`, `Assets/Readme.asset`): left out because of the LFS issue. Not used by the game. See question 5.
+- Unity tutorial template files (`Assets/TutorialInfo`, `Assets/Readme.asset`): only the two scripts are in git, in commit `cdb7a37`; the rest is not. Not used by the game. See question 5.
 - `Assets/_Recovery/0.unity`: a Unity recovery scene from 5 Nov, 13:00. Ignored, not deleted. See question 7.
 - `Assets/Resources`: empty folder Unity created.
 
