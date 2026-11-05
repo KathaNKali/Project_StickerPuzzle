@@ -27,6 +27,7 @@ Assets/_Project/
   Scenes/        built by the designer in Unity (Spike.unity is generated).
   Data/          ScriptableObjects (shapes, wave recipes).
   Art/           materials, models, images.
+  Prefabs/       reusable scene objects, made by the designer.
 docs/            design, decisions, status.
 scripts/         one-command tools.
 Builds/          output, not in git.

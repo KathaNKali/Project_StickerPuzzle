@@ -119,6 +119,101 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &706753077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706753079}
+  - component: {fileID: 706753078}
+  m_Layer: 0
+  m_Name: Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &706753078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706753077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb04e0c1a3a34c1990abf47a3debdb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: StickerPuzzle.Presentation::StickerPuzzle.Presentation.GameBootstrap
+  shapeCatalog: {fileID: 11400000, guid: a9d4e72c91ce047979bf9e9cf8ac2c39, type: 2}
+  boardLayout: {fileID: 11400000, guid: 8311d4ed5a5914ff9af2a202bc9d60bf, type: 2}
+  boardView: {fileID: 751714792}
+  boardCamera: {fileID: 2130691339}
+--- !u!4 &706753079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706753077}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42744, y: -0, z: 0.98923}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &751714791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751714793}
+  - component: {fileID: 751714792}
+  m_Layer: 0
+  m_Name: BoardView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &751714792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751714791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed469edec78bb466c9ac2dd8d7620e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: StickerPuzzle.Presentation::StickerPuzzle.Presentation.BoardView
+  cellPrefab: {fileID: 6489321316147036414, guid: 862152213dda14693ac037390379a77c, type: 3}
+  boardBase: {fileID: 1853708785}
+  baseMargin: 0.3
+--- !u!4 &751714793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751714791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419581130
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd705fdc93b2412d8a6adb75713d09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: StickerPuzzle.Presentation::StickerPuzzle.Presentation.BoardCamera
-  pitch: 76
+  pitch: 65
   padding: 1.2
   boardWidth: 8
   boardHeight: 8
@@ -497,3 +592,5 @@ SceneRoots:
   - {fileID: 2130691337}
   - {fileID: 1419581133}
   - {fileID: 1853708785}
+  - {fileID: 751714793}
+  - {fileID: 706753079}

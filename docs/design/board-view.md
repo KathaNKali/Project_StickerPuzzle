@@ -22,4 +22,7 @@ The Phase 1 test board is `Assets/_Project/Data/BoardLayout_TestBoard.asset` (`B
 The board is centered on the world origin and lies flat: grid X is world X, grid Y is world Z, and one cell is one world unit.
 
 ## Public interface
-`BoardCamera` (on the camera): `SetBoardSize(width, height)`. Pitch and padding are tunable in the Inspector.
+- `GameBootstrap`: builds the board and session from the data assets at start, and exposes `Session`.
+- `BoardView`: `ShowBoard(board)` draws the base and cells.
+- `BoardGrid`: `CellToWorld(cell, worldHeight)` converts grid to world.
+- `BoardCamera`: `SetBoardSize(width, height)`. Pitch and padding are tunable in the Inspector.
