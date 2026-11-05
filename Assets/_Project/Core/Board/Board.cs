@@ -201,6 +201,64 @@ namespace StickerPuzzle.Core
             }
         }
 
+        /// <summary>
+        /// THE exit rule (docs/design/puzzle-rules.md). True if the door is the block's color,
+        /// the block is touching it, and the block's full width along that edge fits inside
+        /// the opening. Exact width is not required; partial overlap is not allowed.
+        /// </summary>
+        public bool CanExitThroughDoor(Block block, Door door)
+        {
+            RequireOnBoard(block);
+
+            if (door == null)
+            {
+                throw new ArgumentNullException(nameof(door));
+            }
+
+            if (!doors.Contains(door))
+            {
+                throw new ArgumentException("Door is not on this board.", nameof(door));
+            }
+
+            if (!string.Equals(block.Color, door.Color, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            var minX = block.Position.X;
+            var minY = block.Position.Y;
+            var maxX = minX + block.Shape.Width - 1;
+            var maxY = minY + block.Shape.Height - 1;
+
+            // The two ends of the block's side facing the door. The opening has no gaps,
+            // so if both ends are inside it, everything between them is too.
+            GridPosition firstEnd;
+            GridPosition lastEnd;
+            switch (door.Side)
+            {
+                case BoardSide.Top:
+                    firstEnd = new GridPosition(minX, maxY);
+                    lastEnd = new GridPosition(maxX, maxY);
+                    break;
+                case BoardSide.Bottom:
+                    firstEnd = new GridPosition(minX, minY);
+                    lastEnd = new GridPosition(maxX, minY);
+                    break;
+                case BoardSide.Left:
+                    firstEnd = new GridPosition(minX, minY);
+                    lastEnd = new GridPosition(minX, maxY);
+                    break;
+                case BoardSide.Right:
+                    firstEnd = new GridPosition(maxX, minY);
+                    lastEnd = new GridPosition(maxX, maxY);
+                    break;
+                default:
+                    throw new InvalidOperationException($"Unknown side: {door.Side}");
+            }
+
+            return IsTouchingDoor(door, firstEnd) && IsTouchingDoor(door, lastEnd);
+        }
+
         private void RequireOnBoard(Block block)
         {
             if (block == null)

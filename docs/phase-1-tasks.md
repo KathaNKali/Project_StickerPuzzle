@@ -9,7 +9,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 - [x] 2. Shape definition: ID, cells, family, plus a validity check (max 3x3, no duplicates).
 - [x] 3. Board and blocks: place blocks and know which cells are taken.
 - [x] 4. Moving: one step in a direction; walls and other blocks stop it.
-- [ ] 5. Doors: side, position, opening size, color, and which cells they touch.
+- [x] 5. Doors: side, position, opening size, color, and which cells they touch.
 - [ ] 6. Exit check: `CanExitThroughDoor` (color, touching, fits). Rectangles only; L shapes on hold.
 - [ ] 7. Exiting: remove the block and detect a cleared board.
 

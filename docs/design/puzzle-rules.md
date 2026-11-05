@@ -14,7 +14,7 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 - Boards have 2 to 4 exits. Checked when a level is created (Phase 2), since a board gets its doors one at a time.
 - A door's position is its first column from the left (top/bottom edges) or first row from the bottom (left/right edges).
 
-**Exiting** (single named function; working name `CanExitThroughDoor`)
+**Exiting** (single named function: `Board.CanExitThroughDoor`)
 - The block's color must equal the door's color.
 - The block must be touching the door.
 - Its cross-section must fit: every cell of its leading edge lies inside the opening span. Exact width match is not required.
@@ -31,7 +31,7 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 - Two doors cannot overlap on the same edge.
 
 **On hold (designer will discuss later)**
-- How L shapes are measured against a door. Phase 1 test boards use no L shapes. Needs an answer before the generator can use them.
+- How L shapes are measured against a door. Phase 1 test boards use no L shapes. Needs an answer before the generator can use them. Until then the code measures any shape by its full width along the edge, and no test locks this in for L shapes.
 
 ## Data
 Grid: (0, 0) is the bottom-left cell seen from above; X grows right, Y grows up.

@@ -7,6 +7,7 @@ namespace StickerPuzzle.Tests
     {
         public static readonly ShapeDefinition Single = Make("single", 0, 0);
         public static readonly ShapeDefinition TwoWide = Make("twoWide", 0, 0, 1, 0);
+        public static readonly ShapeDefinition TwoTall = Make("twoTall", 0, 0, 0, 1);
         public static readonly ShapeDefinition TwoByTwo = Make("twoByTwo", 0, 0, 1, 0, 0, 1, 1, 1);
 
         /// <summary>Covers bottom-left, bottom-right and top-left. The top-right cell is empty.</summary>
