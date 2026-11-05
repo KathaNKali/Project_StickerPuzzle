@@ -39,4 +39,4 @@ Grid: (0, 0) is the bottom-left cell seen from above; X grows right, Y grows up.
 Board: width, height, doors, blocks. Door: side, position, opening size, color. Block: shape ID, grid position, color. Color and image are independent; color decides the exit, image is a Phase 5 concern.
 
 ## Public interface
-Defined in Phase 1.
+`Board`: `TryAddBlock`, `TryAddDoor`, `CanMove`, `TryMove`, `CanExitThroughDoor`, `TryExit`, `GetBlockAt`, `IsInside`, `IsCleared`. `Door.TryCreate` builds a door.

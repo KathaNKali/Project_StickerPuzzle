@@ -9,7 +9,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 6 (exit check): code written, waiting for the designer's Test Runner result. Tasks 1-5 passed.
+- Phase 1, task 7 (exiting): code written, waiting for the designer's Test Runner result. Tasks 1-6 passed.
 
 ## Next
 - Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).

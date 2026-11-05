@@ -34,6 +34,9 @@ namespace StickerPuzzle.Core
 
         public IReadOnlyList<Door> Doors => doors;
 
+        /// <summary>True when no blocks are left on the board.</summary>
+        public bool IsCleared => blocks.Count == 0;
+
         public bool IsInside(GridPosition cell)
         {
             return cell.X >= 0 && cell.X < Width && cell.Y >= 0 && cell.Y < Height;
@@ -257,6 +260,24 @@ namespace StickerPuzzle.Core
             }
 
             return IsTouchingDoor(door, firstEnd) && IsTouchingDoor(door, lastEnd);
+        }
+
+        /// <summary>Removes the block if it can exit through this door. If not, returns false and changes nothing.</summary>
+        public bool TryExit(Block block, Door door)
+        {
+            if (!CanExitThroughDoor(block, door))
+            {
+                return false;
+            }
+
+            var cells = block.Shape.Cells;
+            for (var i = 0; i < cells.Count; i++)
+            {
+                occupancy[IndexOf(block.Position + cells[i])] = null;
+            }
+
+            blocks.Remove(block);
+            return true;
         }
 
         private void RequireOnBoard(Block block)
