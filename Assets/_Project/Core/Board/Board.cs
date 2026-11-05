@@ -11,6 +11,7 @@ namespace StickerPuzzle.Core
     {
         private readonly Block[] occupancy;
         private readonly List<Block> blocks = new List<Block>();
+        private readonly List<Door> doors = new List<Door>();
         private int nextBlockId;
 
         public Board(int width, int height)
@@ -30,6 +31,8 @@ namespace StickerPuzzle.Core
         public int Height { get; }
 
         public IReadOnlyList<Block> Blocks => blocks;
+
+        public IReadOnlyList<Door> Doors => doors;
 
         public bool IsInside(GridPosition cell)
         {
@@ -138,6 +141,64 @@ namespace StickerPuzzle.Core
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Adds a door if it fits its edge and does not overlap another door on that edge.
+        /// If not, returns false, says why and changes nothing.
+        /// </summary>
+        public bool TryAddDoor(Door door, out string error)
+        {
+            if (door == null)
+            {
+                throw new ArgumentNullException(nameof(door));
+            }
+
+            var edgeLength = door.Side == BoardSide.Top || door.Side == BoardSide.Bottom ? Width : Height;
+            if (door.Position + door.OpeningSize > edgeLength)
+            {
+                error = $"{door.Side} door at {door.Position} with opening {door.OpeningSize} does not fit an edge of length {edgeLength}.";
+                return false;
+            }
+
+            for (var i = 0; i < doors.Count; i++)
+            {
+                var other = doors[i];
+                if (other.Side == door.Side
+                    && door.Position < other.Position + other.OpeningSize
+                    && other.Position < door.Position + door.OpeningSize)
+                {
+                    error = $"{door.Side} door at {door.Position} overlaps the door at {other.Position}.";
+                    return false;
+                }
+            }
+
+            doors.Add(door);
+            error = null;
+            return true;
+        }
+
+        /// <summary>True if this cell is in the board's edge row or column, directly against the door's opening.</summary>
+        public bool IsTouchingDoor(Door door, GridPosition cell)
+        {
+            if (door == null)
+            {
+                throw new ArgumentNullException(nameof(door));
+            }
+
+            if (!IsInside(cell))
+            {
+                return false;
+            }
+
+            switch (door.Side)
+            {
+                case BoardSide.Top: return cell.Y == Height - 1 && door.CoversAlongEdge(cell.X);
+                case BoardSide.Bottom: return cell.Y == 0 && door.CoversAlongEdge(cell.X);
+                case BoardSide.Left: return cell.X == 0 && door.CoversAlongEdge(cell.Y);
+                case BoardSide.Right: return cell.X == Width - 1 && door.CoversAlongEdge(cell.Y);
+                default: throw new InvalidOperationException($"Unknown side: {door.Side}");
+            }
         }
 
         private void RequireOnBoard(Block block)

@@ -11,7 +11,8 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 **Doors**
 - A door sits on a board edge and has a color, position and opening size.
 - Opening size is measured along its edge: rows covered on left/right edges, columns covered on top/bottom edges.
-- Boards have 2 to 4 exits.
+- Boards have 2 to 4 exits. Checked when a level is created (Phase 2), since a board gets its doors one at a time.
+- A door's position is its first column from the left (top/bottom edges) or first row from the bottom (left/right edges).
 
 **Exiting** (single named function; working name `CanExitThroughDoor`)
 - The block's color must equal the door's color.
@@ -27,6 +28,7 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 **Assumptions (designer has not confirmed)**
 - A door of the wrong color acts like a normal wall.
 - Letting go anywhere else leaves the block in its current cell.
+- Two doors cannot overlap on the same edge.
 
 **On hold (designer will discuss later)**
 - How L shapes are measured against a door. Phase 1 test boards use no L shapes. Needs an answer before the generator can use them.
