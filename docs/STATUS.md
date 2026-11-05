@@ -9,7 +9,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 1 (grid basics): code written, waiting for the designer's Test Runner result.
+- Phase 1, task 3 (board and blocks): code written, waiting for the designer's Test Runner result. Tasks 1-2 passed.
 
 ## Next
 - Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).
@@ -30,7 +30,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 ## Questions for the designer
 1. **L shapes:** how are they measured against a door? On hold, to discuss later. Needed before Phase 2's generator can use them.
 2. **Undo:** can it bring back a block that has exited, or return to a previous level? Needed by Phase 3.
-3. **Assumptions to confirm:** a wrong-color door acts as a wall; letting go elsewhere leaves the block in place.
+3. **Assumptions to confirm:** a wrong-color door acts as a wall; letting go elsewhere leaves the block in place; a shape's cells must touch side by side.
 4. **Early build:** run one quick build after Phase 1 to catch platform problems early? Recommended.
 5. **Template files:** OK to delete them, along with `Assets/Scenes/SampleScene`? Recommended.
 6. **Names:** final game name and Android ID. Current placeholders: "Sticker Puzzle", `com.kathankali.stickerpuzzle`.

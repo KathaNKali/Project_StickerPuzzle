@@ -5,8 +5,8 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 **Each task:** Claude writes the code and any Unity steps -> designer does the Unity steps and runs the check -> designer commits -> next task.
 
 ## A. Rules (code only; check in Test Runner, EditMode tab)
-- [ ] 1. Grid basics: cell positions and the 4 directions.
-- [ ] 2. Shape definition: ID, cells, family, plus a validity check (max 3x3, no duplicates).
+- [x] 1. Grid basics: cell positions and the 4 directions.
+- [x] 2. Shape definition: ID, cells, family, plus a validity check (max 3x3, no duplicates).
 - [ ] 3. Board and blocks: place blocks and know which cells are taken.
 - [ ] 4. Moving: one step in a direction; walls and other blocks stop it.
 - [ ] 5. Doors: side, position, opening size, color, and which cells they touch.
