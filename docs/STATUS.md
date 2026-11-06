@@ -9,14 +9,16 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 20 (reset button): code written, waiting for the designer to build the button and playtest. Tasks 1-19 passed.
+- Phase 1, task 21 (efficiency check): waiting for the designer's Profiler readings. Tasks 1-20 passed. The scene uses a stacked UI camera (designer's choice).
 
 ## Next
 - Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).
 
 ## Blockers
 - None for Phase 1 (graybox has no art files).
-- Git LFS works through GitHub Desktop, which has its own copy. Terminal git cannot handle `.png` and similar files unless Git LFS is installed separately, so use Desktop.
+- Git LFS 3.8.1 is installed at `~/.local/bin/git-lfs`. Terminal git finds it only once that folder is on PATH in `~/.zshrc`. GitHub Desktop has its own copy.
+
+- **Before real art or audio (Phase 5 at the latest):** GitHub refused LFS uploads because of the account's LFS budget. Designer to check GitHub billing. TextMesh Pro stays out of LFS, in `.gitattributes`.
 
 ## Not verified
 - No WebGL or Android build has finished. The designer chose to skip builds for now; the build scripts are untested.

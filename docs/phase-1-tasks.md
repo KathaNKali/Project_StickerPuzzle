@@ -32,6 +32,6 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 - [x] 19. Exit animation: slides straight out through the door.
 
 ## E. Finish
-- [ ] 20. Reset button (debug) to restore the test board.
+- [x] 20. Reset button (debug) to restore the test board.
 - [ ] 21. Efficiency check: Profiler steps, looking for per-frame memory use and unneeded work.
 - [ ] 22. Full playtest against the Phase 1 done criteria, then your feedback on drag, camera and exit.
