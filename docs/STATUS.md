@@ -9,10 +9,11 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 21 (efficiency check): waiting for the designer's Profiler readings. Tasks 1-20 passed. The scene uses a stacked UI camera (designer's choice).
+- Phase 2 (levels): plan proposed in [phase-2-tasks](phase-2-tasks.md), waiting for designer approval and answers. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
 
 ## Next
-- Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).
+- Phase 2, task 1, once approved.
+- Later: Phase 1 tasks 21-22 in [phase-1-tasks](phase-1-tasks.md).
 
 ## Blockers
 - None for Phase 1 (graybox has no art files).

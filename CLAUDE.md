@@ -65,5 +65,13 @@ Editor path override: `UNITY_PATH=/path/to/Unity scripts/...`
 - Ask before any large refactor or deletion.
 - Do not hand-edit `Library/`, `Temp/`, `Logs/`, `Builds/`, `UserSettings/`.
 
+## Token rules (strict)
+- Replies stay short. After a task: what changed, checks to do, commit list, pass count. No repeated explanations; refer to [WORKFLOW](docs/WORKFLOW.md) for routine steps.
+- Do not re-read files already in context. Search for the lines needed; read interfaces before implementations.
+- Check commits once per group of tasks, not after every task.
+- Do not scan project-wide unless looking for a specific problem.
+- Start a fresh session for each phase or system group; handover lives in STATUS.md and the task list.
+- Say so when a session has grown long.
+
 ## Style with the designer
 Simple, easy-to-understand answers, in points. Short replies, explain trade-offs, challenge risks to scope, performance or architecture. Verify by running tests and builds, not by re-reading code. Never paste file contents back.

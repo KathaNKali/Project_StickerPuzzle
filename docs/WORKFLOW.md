@@ -8,6 +8,9 @@ The designer does the Unity and git work by hand, to learn the craft.
 - Claude asks when anything is unclear rather than guessing.
 - **Tests:** the designer runs them from Window > General > Test Runner and reports any failures. Claude says which tests to run and what a pass looks like, and does not call code working until the result is back.
 
+## Routine steps for every task
+Unless a task says otherwise: click into Unity and wait for the spinner; send any red Console errors; run Test Runner > EditMode > Run All; in GitHub Desktop, tick only the listed files, each new file with its `.meta`; commit; report results, feedback and the next request in one message.
+
 ## Session routine
 **Start:** read [STATUS](STATUS.md), then only the docs the task needs.
 
