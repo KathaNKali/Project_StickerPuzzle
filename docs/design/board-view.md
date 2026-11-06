@@ -10,6 +10,7 @@ Shows the board in 3D and lets the player drag blocks (Phase 1). Holds no game s
 - The whole board stays visible on any portrait screen shape.
 - Graybox art for now.
 - Mouse first. Touch arrives in Phase 4.
+- A held block lifts slightly to show it was picked up (placeholder feedback).
 - Dragging moves the block one grid step at a time toward the pointer. The animation between cells is only visual.
 - Letting go at a fitting door starts the exit. Letting go elsewhere leaves the block in place (assumption).
 
@@ -26,5 +27,6 @@ The board is centered on the world origin and lies flat: grid X is world X, grid
 - `BoardView`: `ShowBoard(board)` draws the base, cells, doors and blocks.
 - `BoardGrid`: `CellToWorld(cell, worldHeight)`, `GetDoorCenter`, `GetDoorSize` convert grid data to world.
 - `ColorPaletteAsset` (`Assets/_Project/Data/ColorPalette.asset`): matches each color ID to a material. IDs must match the layout exactly, such as `red`.
-- `BlockView`: one per block, with `Model` as its game data.
+- `BlockView`: one per block, with `Model` as its game data and `SetHeld(bool)`. `BoardView.TryGetBlockView(id, out view)` finds one.
+- `BoardInput`: turns the pointer into session commands.
 - `BoardCamera`: `SetBoardSize(width, height)`. Pitch and padding are tunable in the Inspector.

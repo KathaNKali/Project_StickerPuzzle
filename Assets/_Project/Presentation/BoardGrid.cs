@@ -28,6 +28,28 @@ namespace StickerPuzzle.Presentation
                 ((height - 1) * -0.5f) + cell.Y);
         }
 
+        /// <summary>The grid cell containing a world position. The result can be off the board.</summary>
+        public GridPosition WorldToCell(Vector3 world)
+        {
+            return new GridPosition(
+                Mathf.FloorToInt(world.x + (width * 0.5f)),
+                Mathf.FloorToInt(world.z + (height * 0.5f)));
+        }
+
+        /// <summary>Where a ray from the camera meets a flat plane at this world height. False if it never does.</summary>
+        public static bool TryGetPointAtHeight(Ray ray, float worldHeight, out Vector3 point)
+        {
+            var plane = new Plane(Vector3.up, new Vector3(0f, worldHeight, 0f));
+            if (plane.Raycast(ray, out var distance))
+            {
+                point = ray.GetPoint(distance);
+                return true;
+            }
+
+            point = default;
+            return false;
+        }
+
         /// <summary>The center of a door's bar, placed just outside the board edge.</summary>
         public Vector3 GetDoorCenter(Door door, float outwardOffset, float worldHeight)
         {

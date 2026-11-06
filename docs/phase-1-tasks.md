@@ -22,7 +22,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 - [x] 11. Empty game scene with a portrait Game view, light and board base.
 - [x] 12. Camera: nearly top-down, fits the whole board on any portrait screen.
 - [x] 13. Board view: draws the grid cells from game data.
-- [ ] 14. Doors and blocks: gray 3D boxes, colored by game data.
+- [x] 14. Doors and blocks: gray 3D boxes, colored by game data.
 
 ## D. Mouse drag
 - [ ] 15. Pick up: click a block to select it, release to drop it.

@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706753079}
   - component: {fileID: 706753078}
+  - component: {fileID: 706753080}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -167,6 +168,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &706753080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706753077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3430fef59b66c4e158808dc383ba5de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: StickerPuzzle.Presentation::StickerPuzzle.Presentation.BoardInput
+  bootstrap: {fileID: 706753078}
+  boardCamera: {fileID: 2130691336}
+  boardView: {fileID: 751714792}
 --- !u!1 &751714791
 GameObject:
   m_ObjectHideFlags: 0

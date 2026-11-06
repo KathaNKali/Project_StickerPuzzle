@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using StickerPuzzle.Core;
 using UnityEngine;
 
@@ -28,6 +29,13 @@ namespace StickerPuzzle.Presentation
         [Tooltip("How far the base extends past the grid on every side, in cells.")]
         [SerializeField, Min(0f)] private float baseMargin = 0.3f;
 
+        private readonly Dictionary<int, BlockView> blockViews = new Dictionary<int, BlockView>();
+
+        public bool TryGetBlockView(int blockId, out BlockView view)
+        {
+            return blockViews.TryGetValue(blockId, out view);
+        }
+
         public void ShowBoard(Board board)
         {
             ClearBoard();
@@ -45,6 +53,8 @@ namespace StickerPuzzle.Presentation
 
         private void ClearBoard()
         {
+            blockViews.Clear();
+
             for (var i = transform.childCount - 1; i >= 0; i--)
             {
                 Destroy(transform.GetChild(i).gameObject);
@@ -81,7 +91,10 @@ namespace StickerPuzzle.Presentation
                 var root = new GameObject($"Block_{block.Id}_{block.Shape.Id}_{block.Color}");
                 root.transform.SetParent(transform, false);
                 root.transform.position = grid.CellToWorld(block.Position);
-                root.AddComponent<BlockView>().Initialize(block);
+
+                var view = root.AddComponent<BlockView>();
+                view.Initialize(block);
+                blockViews.Add(block.Id, view);
 
                 for (var i = 0; i < block.Shape.Cells.Count; i++)
                 {
