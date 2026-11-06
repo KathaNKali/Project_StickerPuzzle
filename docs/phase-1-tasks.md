@@ -29,7 +29,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 - [x] 16. Drag: the block follows the mouse one cell at a time, blocked by walls and blocks.
 - [x] 17. Smooth movement between cells.
 - [x] 18. Exit on let-go: letting go at a fitting door triggers the exit.
-- [ ] 19. Exit animation: slides straight out through the door.
+- [x] 19. Exit animation: slides straight out through the door.
 
 ## E. Finish
 - [ ] 20. Reset button (debug) to restore the test board.

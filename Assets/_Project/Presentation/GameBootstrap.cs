@@ -14,7 +14,24 @@ namespace StickerPuzzle.Presentation
         /// <summary>The current play session, or null if the board could not be built.</summary>
         public PuzzleSession Session { get; private set; }
 
+        /// <summary>Debug: throws away the current play and starts the board again from the layout.</summary>
+        public void ResetBoard()
+        {
+            StopSession();
+            StartSession();
+        }
+
         private void Start()
+        {
+            StartSession();
+        }
+
+        private void OnDestroy()
+        {
+            StopSession();
+        }
+
+        private void StartSession()
         {
             if (shapeCatalog == null || boardLayout == null || boardView == null || boardCamera == null)
             {
@@ -41,12 +58,13 @@ namespace StickerPuzzle.Presentation
             Session.BlockExited += boardView.HandleBlockExited;
         }
 
-        private void OnDestroy()
+        private void StopSession()
         {
             if (Session != null)
             {
                 Session.BlockMoved -= boardView.HandleBlockMoved;
                 Session.BlockExited -= boardView.HandleBlockExited;
+                Session = null;
             }
         }
     }

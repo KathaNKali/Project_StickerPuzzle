@@ -24,7 +24,7 @@ The Phase 1 test board is `Assets/_Project/Data/BoardLayout_TestBoard.asset` (`B
 The board is centered on the world origin and lies flat: grid X is world X, grid Y is world Z, and one cell is one world unit.
 
 ## Public interface
-- `GameBootstrap`: builds the board and session from the data assets at start, and exposes `Session`.
+- `GameBootstrap`: builds the board and session from the data assets at start, and exposes `Session`. `ResetBoard()` restarts from the layout; it is a debug action, used by the scene's temporary Reset button.
 - `BoardView`: `ShowBoard(board)` draws the base, cells, doors and blocks.
 - `BoardGrid`: `CellToWorld(cell, worldHeight)`, `GetDoorCenter`, `GetDoorSize` convert grid data to world.
 - `ColorPaletteAsset` (`Assets/_Project/Data/ColorPalette.asset`): matches each color ID to a material. IDs must match the layout exactly, such as `red`.
