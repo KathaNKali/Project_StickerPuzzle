@@ -1,0 +1,33 @@
+# Board view
+
+## Purpose
+Shows the board in 3D and lets the player drag blocks (Phase 1). Holds no game state. Rules: [puzzle-rules](puzzle-rules.md).
+
+## Rules
+- Lives in `Assets/_Project/Scenes/Game.unity`, built by the designer.
+- Rules and clicks use grid math, not physics, so scene objects need no colliders.
+- Portrait screen. Nearly top-down, orthographic camera (designer's choice): blocks look the same size anywhere on the board.
+- The whole board stays visible on any portrait screen shape.
+- Graybox art for now.
+- Mouse first. Touch arrives in Phase 4.
+- A held block lifts slightly to show it was picked up (placeholder feedback).
+- Dragging moves the block one grid step at a time toward the pointer, keeping the grabbed cell under the pointer. It tries the longer direction first, then the other, and never jumps over anything.
+- The game moves blocks instantly between cells; the visible block animates after it. Two separate sliders on `BoardView`: **Move Speed** (cells per second) and **Move Smoothness** (how softly it starts and stops, without changing travel speed). The animation is only visual.
+- Letting go at a fitting door starts the exit: the block finishes reaching its last cell, slides straight out, and is removed once fully past the door. **Exit Speed** on `BoardView` tunes it. Letting go elsewhere leaves the block in place (assumption).
+
+## Data
+Reads board state from Game. Colors map to materials by color ID.
+
+The Phase 1 test board is `Assets/_Project/Data/BoardLayout_TestBoard.asset` (`BoardLayoutAsset`): temporary, editable, with Inspector buttons to fill and check it. A test plays through a full solution of the default layout.
+
+## World layout
+The board is centered on the world origin and lies flat: grid X is world X, grid Y is world Z, and one cell is one world unit.
+
+## Public interface
+- `GameBootstrap`: builds the board and session from the data assets at start, and exposes `Session`. `ResetBoard()` restarts from the layout; it is a debug action, used by the scene's temporary Reset button.
+- `BoardView`: `ShowBoard(board)` draws the base, cells, doors and blocks.
+- `BoardGrid`: `CellToWorld(cell, worldHeight)`, `GetDoorCenter`, `GetDoorSize` convert grid data to world.
+- `ColorPaletteAsset` (`Assets/_Project/Data/ColorPalette.asset`): matches each color ID to a material. IDs must match the layout exactly, such as `red`.
+- `BlockView`: one per block, with `Model` as its game data and `SetHeld(bool)`. `BoardView.TryGetBlockView(id, out view)` finds one.
+- `BoardInput`: turns the pointer into session commands.
+- `BoardCamera`: `SetBoardSize(width, height)`. Pitch and padding are tunable in the Inspector.
