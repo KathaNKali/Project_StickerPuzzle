@@ -18,6 +18,9 @@ namespace StickerPuzzle.Presentation
         private const float BlockHeight = 0.6f;
         private const float BlockGap = 0.05f;
 
+        // How far past the board edge a block travels before it is removed, beyond its own length.
+        private const float ExitClearance = 0.35f;
+
         [SerializeField] private GameObject cellPrefab;
         [SerializeField] private Transform boardBase;
 
@@ -34,6 +37,9 @@ namespace StickerPuzzle.Presentation
 
         [Tooltip("How softly blocks start and stop, in seconds. 0 is crisp. Does not change the travel speed.")]
         [SerializeField, Range(0f, 0.4f)] private float moveSmoothness = 0.08f;
+
+        [Tooltip("How fast blocks slide out through a door, in cells per second.")]
+        [SerializeField, Range(1f, 40f)] private float exitSpeed = 8f;
 
         private readonly Dictionary<int, BlockView> blockViews = new Dictionary<int, BlockView>();
         private BoardGrid currentGrid;
@@ -67,7 +73,10 @@ namespace StickerPuzzle.Presentation
             if (TryGetBlockView(block.Id, out var view))
             {
                 blockViews.Remove(block.Id);
-                Destroy(view.gameObject);
+                view.PlayExit(
+                    currentGrid.CellToWorld(block.Position),
+                    currentGrid.GetExitPosition(block, door, ExitClearance),
+                    exitSpeed);
             }
         }
 

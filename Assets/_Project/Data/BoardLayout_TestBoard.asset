@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151eae00a32404491bc90b822fffef2a, type: 3}
   m_Name: BoardLayout_TestBoard
   m_EditorClassIdentifier: StickerPuzzle.Game::StickerPuzzle.Game.BoardLayoutAsset
-  width: 6
-  height: 6
+  width: 8
+  height: 8
   doors:
   - side: 2
     position: 2

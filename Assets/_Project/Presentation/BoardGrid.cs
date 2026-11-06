@@ -50,6 +50,24 @@ namespace StickerPuzzle.Presentation
             return false;
         }
 
+        /// <summary>
+        /// Where a block's bottom-left cell ends up once it has slid straight out through a door:
+        /// its full length past the edge, plus some clearance beyond the door's bar.
+        /// </summary>
+        public Vector3 GetExitPosition(Block block, Door door, float clearance)
+        {
+            var start = CellToWorld(block.Position);
+
+            switch (door.Side)
+            {
+                case BoardSide.Top: return start + (Vector3.forward * (block.Shape.Height + clearance));
+                case BoardSide.Bottom: return start + (Vector3.back * (block.Shape.Height + clearance));
+                case BoardSide.Left: return start + (Vector3.left * (block.Shape.Width + clearance));
+                case BoardSide.Right: return start + (Vector3.right * (block.Shape.Width + clearance));
+                default: throw new InvalidOperationException($"Unknown side: {door.Side}");
+            }
+        }
+
         /// <summary>The center of a door's bar, placed just outside the board edge.</summary>
         public Vector3 GetDoorCenter(Door door, float outwardOffset, float worldHeight)
         {

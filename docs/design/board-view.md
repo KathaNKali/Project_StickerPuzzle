@@ -13,7 +13,7 @@ Shows the board in 3D and lets the player drag blocks (Phase 1). Holds no game s
 - A held block lifts slightly to show it was picked up (placeholder feedback).
 - Dragging moves the block one grid step at a time toward the pointer, keeping the grabbed cell under the pointer. It tries the longer direction first, then the other, and never jumps over anything.
 - The game moves blocks instantly between cells; the visible block animates after it. Two separate sliders on `BoardView`: **Move Speed** (cells per second) and **Move Smoothness** (how softly it starts and stops, without changing travel speed). The animation is only visual.
-- Letting go at a fitting door starts the exit. Letting go elsewhere leaves the block in place (assumption).
+- Letting go at a fitting door starts the exit: the block finishes reaching its last cell, slides straight out, and is removed once fully past the door. **Exit Speed** on `BoardView` tunes it. Letting go elsewhere leaves the block in place (assumption).
 
 ## Data
 Reads board state from Game. Colors map to materials by color ID.

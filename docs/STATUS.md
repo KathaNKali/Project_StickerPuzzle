@@ -9,7 +9,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 18 (exit on let-go): code written, waiting for the designer's playtest. Tasks 1-17 passed. Exiting blocks vanish instantly until task 19 animates them.
+- Phase 1, task 19 (exit animation): code written, waiting for the designer's playtest and Test Runner result. Tasks 1-18 passed.
 
 ## Next
 - Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).

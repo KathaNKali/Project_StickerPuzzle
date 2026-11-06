@@ -22,6 +22,11 @@ namespace StickerPuzzle.Presentation
         private float moveSpeed;
         private float smoothTime;
 
+        private bool isExiting;
+        private bool isOnFinalExitLeg;
+        private Vector3 exitEndPosition;
+        private float exitSpeed;
+
         public Block Model { get; private set; }
 
         /// <summary>
@@ -81,35 +86,75 @@ namespace StickerPuzzle.Presentation
 
         public void SetHeld(bool held)
         {
+            if (isExiting)
+            {
+                return;
+            }
+
             targetPosition.y = held ? HeldLift : 0f;
             StartMoving();
         }
 
+        /// <summary>
+        /// Finishes travelling to the block's last cell, slides straight out to the end point,
+        /// then removes itself. Starting from the last cell keeps the exit straight even if the
+        /// visible block was trailing behind the mouse.
+        /// </summary>
+        public void PlayExit(Vector3 lastCellWorld, Vector3 endWorld, float cellsPerSecond)
+        {
+            targetPosition = lastCellWorld;
+            exitEndPosition = endWorld;
+            exitSpeed = cellsPerSecond;
+            isExiting = true;
+            isOnFinalExitLeg = false;
+            enabled = true;
+        }
+
         private void StartMoving()
         {
-            if (moveSpeed <= 0f && smoothTime <= 0f)
+            if (isExiting || moveSpeed > 0f || smoothTime > 0f)
             {
-                PlaceAt(targetPosition);
+                enabled = true;
             }
             else
             {
-                enabled = true;
+                PlaceAt(targetPosition);
             }
         }
 
         private void Update()
         {
             var deltaTime = Time.deltaTime;
-            guidePosition = TravelStep(guidePosition, targetPosition, moveSpeed, deltaTime);
+            var speed = isOnFinalExitLeg ? exitSpeed : moveSpeed;
+            guidePosition = TravelStep(guidePosition, targetPosition, speed, deltaTime);
+
+            if (isExiting && !isOnFinalExitLeg && guidePosition == targetPosition)
+            {
+                isOnFinalExitLeg = true;
+                targetPosition = exitEndPosition;
+            }
+
             var next = SmoothStep(transform.position, guidePosition, smoothTime, deltaTime);
 
             if (guidePosition == targetPosition && (targetPosition - next).sqrMagnitude < ArrivedDistanceSquared)
             {
-                PlaceAt(targetPosition);
+                FinishMoving();
             }
             else
             {
                 transform.position = next;
+            }
+        }
+
+        private void FinishMoving()
+        {
+            if (isExiting)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                PlaceAt(targetPosition);
             }
         }
     }
