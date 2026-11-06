@@ -44,4 +44,4 @@ Board: width, height, doors, blocks. Door: side, position, opening size, color. 
 ## Public interface
 `Board`: `TryAddBlock`, `TryAddDoor`, `CanMove`, `TryMove`, `CanExitThroughDoor`, `FindExitDoor`, `TryExit`, `GetBlockAt`, `IsInside`, `IsCleared`. `Door.TryCreate` builds a door.
 
-`PuzzleSession` (Game) is what input and views use. Commands: `TryPickUp`, `TryStep`, `LetGo`. Events: `BlockMoved`, `BlockExited`, `BoardCleared`.
+`PuzzleSession` (Game) is what input and views use. Commands: `TryPickUp`, `TryStep`, `DragHeldToward`, `LetGo`. Events: `BlockMoved`, `BlockExited`, `BoardCleared`.

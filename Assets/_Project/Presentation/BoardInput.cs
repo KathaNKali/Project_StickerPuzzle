@@ -1,3 +1,4 @@
+using StickerPuzzle.Core;
 using StickerPuzzle.Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +20,9 @@ namespace StickerPuzzle.Presentation
 
         private BlockView heldView;
 
+        // Which of the block's cells was grabbed, so it does not jump to center on the pointer.
+        private GridPosition grabOffset;
+
         private void Update()
         {
             var session = bootstrap.Session;
@@ -33,25 +37,46 @@ namespace StickerPuzzle.Presentation
                 PickUp(session, pointer.position.ReadValue());
             }
 
+            if (pointer.press.isPressed && session.HeldBlock != null)
+            {
+                Drag(session, pointer.position.ReadValue());
+            }
+
             if (pointer.press.wasReleasedThisFrame)
             {
                 LetGo(session);
             }
         }
 
-        private void PickUp(PuzzleSession session, Vector2 screenPosition)
+        private bool TryGetPointerCell(PuzzleSession session, Vector2 screenPosition, out GridPosition cell)
         {
             var ray = boardCamera.ScreenPointToRay(screenPosition);
             if (!BoardGrid.TryGetPointAtHeight(ray, PointerPlaneHeight, out var world))
             {
-                return;
+                cell = default;
+                return false;
             }
 
-            var grid = new BoardGrid(session.Board.Width, session.Board.Height);
-            if (session.TryPickUp(grid.WorldToCell(world))
+            cell = new BoardGrid(session.Board.Width, session.Board.Height).WorldToCell(world);
+            return true;
+        }
+
+        private void PickUp(PuzzleSession session, Vector2 screenPosition)
+        {
+            if (TryGetPointerCell(session, screenPosition, out var cell)
+                && session.TryPickUp(cell)
                 && boardView.TryGetBlockView(session.HeldBlock.Id, out heldView))
             {
+                grabOffset = cell - session.HeldBlock.Position;
                 heldView.SetHeld(true);
+            }
+        }
+
+        private void Drag(PuzzleSession session, Vector2 screenPosition)
+        {
+            if (TryGetPointerCell(session, screenPosition, out var cell))
+            {
+                session.DragHeldToward(cell - grabOffset);
             }
         }
 

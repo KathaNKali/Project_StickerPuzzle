@@ -63,6 +63,42 @@ namespace StickerPuzzle.Game
         }
 
         /// <summary>
+        /// Moves the held block toward a target position, one legal cell at a time, so it can
+        /// never jump over anything. It tries the longer axis first, then the other one. Every
+        /// step gets nearer the target, so this always ends. Returns the number of cells moved.
+        /// </summary>
+        public int DragHeldToward(GridPosition target)
+        {
+            if (HeldBlock == null)
+            {
+                return 0;
+            }
+
+            var steps = 0;
+            while (HeldBlock.Position != target && TryStepToward(target))
+            {
+                steps++;
+            }
+
+            return steps;
+        }
+
+        private bool TryStepToward(GridPosition target)
+        {
+            var offset = target - HeldBlock.Position;
+            var horizontal = offset.X > 0 ? Direction.Right : Direction.Left;
+            var vertical = offset.Y > 0 ? Direction.Up : Direction.Down;
+            var horizontalFirst = Math.Abs(offset.X) >= Math.Abs(offset.Y);
+
+            if (horizontalFirst)
+            {
+                return (offset.X != 0 && TryStep(horizontal)) || (offset.Y != 0 && TryStep(vertical));
+            }
+
+            return (offset.Y != 0 && TryStep(vertical)) || (offset.X != 0 && TryStep(horizontal));
+        }
+
+        /// <summary>
         /// Ends the drag. The block exits if it moved at least one cell during this drag
         /// and now fits a door; otherwise it stays in its cell. False if nothing was held.
         /// </summary>

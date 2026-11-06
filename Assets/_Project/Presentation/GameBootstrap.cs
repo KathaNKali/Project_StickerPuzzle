@@ -37,6 +37,15 @@ namespace StickerPuzzle.Presentation
             Session = new PuzzleSession(board);
             boardCamera.SetBoardSize(board.Width, board.Height);
             boardView.ShowBoard(board);
+            Session.BlockMoved += boardView.HandleBlockMoved;
+        }
+
+        private void OnDestroy()
+        {
+            if (Session != null)
+            {
+                Session.BlockMoved -= boardView.HandleBlockMoved;
+            }
         }
     }
 }

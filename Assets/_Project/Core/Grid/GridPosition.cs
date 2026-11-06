@@ -22,6 +22,11 @@ namespace StickerPuzzle.Core
             return new GridPosition(a.X + b.X, a.Y + b.Y);
         }
 
+        public static GridPosition operator -(GridPosition a, GridPosition b)
+        {
+            return new GridPosition(a.X - b.X, a.Y - b.Y);
+        }
+
         public static bool operator ==(GridPosition a, GridPosition b)
         {
             return a.Equals(b);

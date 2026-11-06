@@ -16,6 +16,13 @@ namespace StickerPuzzle.Presentation
             Model = model;
         }
 
+        /// <summary>Moves to a spot on the board, keeping the current lift.</summary>
+        public void MoveTo(Vector3 world)
+        {
+            world.y = transform.position.y;
+            transform.position = world;
+        }
+
         public void SetHeld(bool held)
         {
             var position = transform.position;

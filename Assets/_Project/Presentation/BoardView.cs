@@ -30,10 +30,20 @@ namespace StickerPuzzle.Presentation
         [SerializeField, Min(0f)] private float baseMargin = 0.3f;
 
         private readonly Dictionary<int, BlockView> blockViews = new Dictionary<int, BlockView>();
+        private BoardGrid currentGrid;
 
         public bool TryGetBlockView(int blockId, out BlockView view)
         {
             return blockViews.TryGetValue(blockId, out view);
+        }
+
+        /// <summary>Called when the game reports that a block moved.</summary>
+        public void HandleBlockMoved(Block block)
+        {
+            if (TryGetBlockView(block.Id, out var view))
+            {
+                view.MoveTo(currentGrid.CellToWorld(block.Position));
+            }
         }
 
         public void ShowBoard(Board board)
@@ -45,10 +55,10 @@ namespace StickerPuzzle.Presentation
             baseScale.z = board.Height + (baseMargin * 2f);
             boardBase.localScale = baseScale;
 
-            var grid = new BoardGrid(board.Width, board.Height);
-            ShowCells(board, grid);
-            ShowDoors(board, grid);
-            ShowBlocks(board, grid);
+            currentGrid = new BoardGrid(board.Width, board.Height);
+            ShowCells(board, currentGrid);
+            ShowDoors(board, currentGrid);
+            ShowBlocks(board, currentGrid);
         }
 
         private void ClearBoard()

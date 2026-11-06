@@ -9,7 +9,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 1, task 15 (pick up): code written, waiting for the designer's Unity steps and Test Runner result. Tasks 1-14 passed.
+- Phase 1, task 16 (drag): code written, waiting for the designer's playtest and Test Runner result. Tasks 1-15 passed. An exited block stays visible until task 18.
 
 ## Next
 - Remaining micro-tasks, one at a time: [phase-1-tasks](phase-1-tasks.md).

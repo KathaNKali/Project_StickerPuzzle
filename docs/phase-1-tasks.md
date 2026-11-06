@@ -25,7 +25,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Do one task at a time, in order. 
 - [x] 14. Doors and blocks: gray 3D boxes, colored by game data.
 
 ## D. Mouse drag
-- [ ] 15. Pick up: click a block to select it, release to drop it.
+- [x] 15. Pick up: click a block to select it, release to drop it.
 - [ ] 16. Drag: the block follows the mouse one cell at a time, blocked by walls and blocks.
 - [ ] 17. Smooth movement between cells.
 - [ ] 18. Exit on let-go: letting go at a fitting door triggers the exit.
