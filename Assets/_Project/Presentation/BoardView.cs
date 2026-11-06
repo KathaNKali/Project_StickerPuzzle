@@ -29,8 +29,23 @@ namespace StickerPuzzle.Presentation
         [Tooltip("How far the base extends past the grid on every side, in cells.")]
         [SerializeField, Min(0f)] private float baseMargin = 0.3f;
 
+        [Tooltip("How fast blocks travel, in cells per second.")]
+        [SerializeField, Range(1f, 75f)] private float moveSpeed = 12f;
+
+        [Tooltip("How softly blocks start and stop, in seconds. 0 is crisp. Does not change the travel speed.")]
+        [SerializeField, Range(0f, 0.4f)] private float moveSmoothness = 0.08f;
+
         private readonly Dictionary<int, BlockView> blockViews = new Dictionary<int, BlockView>();
         private BoardGrid currentGrid;
+
+        private void OnValidate()
+        {
+            // Lets the designer tune the sliders live during Play.
+            foreach (var view in blockViews.Values)
+            {
+                view.SetMotion(moveSpeed, moveSmoothness);
+            }
+        }
 
         public bool TryGetBlockView(int blockId, out BlockView view)
         {
@@ -100,10 +115,11 @@ namespace StickerPuzzle.Presentation
             {
                 var root = new GameObject($"Block_{block.Id}_{block.Shape.Id}_{block.Color}");
                 root.transform.SetParent(transform, false);
-                root.transform.position = grid.CellToWorld(block.Position);
 
                 var view = root.AddComponent<BlockView>();
                 view.Initialize(block);
+                view.PlaceAt(grid.CellToWorld(block.Position));
+                view.SetMotion(moveSpeed, moveSmoothness);
                 blockViews.Add(block.Id, view);
 
                 for (var i = 0; i < block.Shape.Cells.Count; i++)

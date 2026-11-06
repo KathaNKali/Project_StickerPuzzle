@@ -11,7 +11,8 @@ Shows the board in 3D and lets the player drag blocks (Phase 1). Holds no game s
 - Graybox art for now.
 - Mouse first. Touch arrives in Phase 4.
 - A held block lifts slightly to show it was picked up (placeholder feedback).
-- Dragging moves the block one grid step at a time toward the pointer, keeping the grabbed cell under the pointer. It tries the longer direction first, then the other, and never jumps over anything. The animation between cells is only visual.
+- Dragging moves the block one grid step at a time toward the pointer, keeping the grabbed cell under the pointer. It tries the longer direction first, then the other, and never jumps over anything.
+- The game moves blocks instantly between cells; the visible block animates after it. Two separate sliders on `BoardView`: **Move Speed** (cells per second) and **Move Smoothness** (how softly it starts and stops, without changing travel speed). The animation is only visual.
 - Letting go at a fitting door starts the exit. Letting go elsewhere leaves the block in place (assumption).
 
 ## Data

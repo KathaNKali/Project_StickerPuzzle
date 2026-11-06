@@ -68,7 +68,7 @@ namespace StickerPuzzle.Tests
         public void SetHeld_True_LiftsAndKeepsCell()
         {
             var view = new GameObject("TestBlock").AddComponent<BlockView>();
-            view.transform.position = new Vector3(1f, 0f, 2f);
+            view.PlaceAt(new Vector3(1f, 0f, 2f));
 
             view.SetHeld(true);
 
@@ -80,7 +80,7 @@ namespace StickerPuzzle.Tests
         public void SetHeld_TrueThenFalse_ReturnsToBoard()
         {
             var view = new GameObject("TestBlock").AddComponent<BlockView>();
-            view.transform.position = new Vector3(1f, 0f, 2f);
+            view.PlaceAt(new Vector3(1f, 0f, 2f));
 
             view.SetHeld(true);
             view.SetHeld(true);
