@@ -38,6 +38,7 @@ namespace StickerPuzzle.Presentation
             boardCamera.SetBoardSize(board.Width, board.Height);
             boardView.ShowBoard(board);
             Session.BlockMoved += boardView.HandleBlockMoved;
+            Session.BlockExited += boardView.HandleBlockExited;
         }
 
         private void OnDestroy()
@@ -45,6 +46,7 @@ namespace StickerPuzzle.Presentation
             if (Session != null)
             {
                 Session.BlockMoved -= boardView.HandleBlockMoved;
+                Session.BlockExited -= boardView.HandleBlockExited;
             }
         }
     }

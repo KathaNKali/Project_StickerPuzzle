@@ -61,6 +61,16 @@ namespace StickerPuzzle.Presentation
             }
         }
 
+        /// <summary>Called when the game reports that a block left the board.</summary>
+        public void HandleBlockExited(Block block, Door door)
+        {
+            if (TryGetBlockView(block.Id, out var view))
+            {
+                blockViews.Remove(block.Id);
+                Destroy(view.gameObject);
+            }
+        }
+
         public void ShowBoard(Board board)
         {
             ClearBoard();

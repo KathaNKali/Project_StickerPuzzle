@@ -217,8 +217,8 @@ MonoBehaviour:
   partPrefab: {fileID: 7601781245536878703, guid: 80463751d75aa48d688219d79c8ccd4b, type: 3}
   colorPalette: {fileID: 11400000, guid: aca9ee942f725444d8467be894566e66, type: 2}
   baseMargin: 0.3
-  moveSpeed: 12
-  moveSmoothness: 0.4
+  moveSpeed: 75
+  moveSmoothness: 0.08
 --- !u!4 &751714793
 Transform:
   m_ObjectHideFlags: 0
