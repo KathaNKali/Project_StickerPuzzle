@@ -42,7 +42,20 @@ namespace StickerPuzzle.Presentation
         [SerializeField, Range(1f, 40f)] private float exitSpeed = 8f;
 
         private readonly Dictionary<int, BlockView> blockViews = new Dictionary<int, BlockView>();
+
+        // Blocks still sliding out. Each one destroys itself when done, which Unity reports as null.
+        private readonly List<BlockView> exitingViews = new List<BlockView>();
         private BoardGrid currentGrid;
+
+        /// <summary>True while any block is still sliding out through a door.</summary>
+        public bool IsExitPlaying
+        {
+            get
+            {
+                exitingViews.RemoveAll(view => view == null);
+                return exitingViews.Count > 0;
+            }
+        }
 
         private void OnValidate()
         {
@@ -73,6 +86,7 @@ namespace StickerPuzzle.Presentation
             if (TryGetBlockView(block.Id, out var view))
             {
                 blockViews.Remove(block.Id);
+                exitingViews.Add(view);
                 view.PlayExit(
                     currentGrid.CellToWorld(block.Position),
                     currentGrid.GetExitPosition(block, door, ExitClearance),
@@ -98,6 +112,7 @@ namespace StickerPuzzle.Presentation
         private void ClearBoard()
         {
             blockViews.Clear();
+            exitingViews.Clear();
 
             for (var i = transform.childCount - 1; i >= 0; i--)
             {

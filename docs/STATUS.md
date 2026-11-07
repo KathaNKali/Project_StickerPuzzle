@@ -9,10 +9,10 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Task 1 (level identity) is committed. Task 2 (Level Data) is written; not yet compiled or tested in Unity, and the designer still creates the asset. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
+- Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Tasks 1-3 done. Tasks 4-5 (level flow, waves in the Game scene) written; not yet compiled, tested or played. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
 
 ## Next
-- Designer checks task 2, then Phase 2 task 3 (5 dummy levels).
+- Designer wires Level Data into GameBootstrap and playtests tasks 4-5. Then task 6 (No more levels message), ideally in a fresh session.
 - Later: Phase 1 tasks 21-22 in [phase-1-tasks](phase-1-tasks.md).
 
 ## Blockers
@@ -40,5 +40,4 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 7. **Corner doors:** same-color doors sharing a corner are disallowed for now. Revisit later.
 8. **Names:** final game name and Android ID. Current placeholders: "Sticker Puzzle", `com.kathankali.stickerpuzzle`.
 9. **Seed (generator):** a typed number plus a New Seed button? Recommended.
-10. **Refill threshold:** build only "fully cleared" for now? Recommended, since fixed levels can differ in board size.
 11. **Recovery scene:** does `Assets/_Recovery/0.unity` hold anything you need? If not, it can be deleted.

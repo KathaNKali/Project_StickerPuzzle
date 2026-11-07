@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickerPuzzle.Game::StickerPuzzle.Game.LevelDataAsset
   levels:
   - {fileID: 11400000, guid: 8311d4ed5a5914ff9af2a202bc9d60bf, type: 2}
+  - {fileID: 11400000, guid: 2e1679105c09e405495640ecde0e5274, type: 2}
+  - {fileID: 11400000, guid: 74dec41e6db6a455bab93820a6ae8c06, type: 2}
+  - {fileID: 11400000, guid: 0d241d141940c4ef0bdb7624cfd622b9, type: 2}
+  - {fileID: 11400000, guid: a7a4900b0e6bd4009a812f71a6feb856, type: 2}

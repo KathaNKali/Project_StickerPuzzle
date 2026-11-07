@@ -4,8 +4,8 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Rules: [waves-and-generator](desi
 
 ## Part 1: Wave system with 5 dummy levels
 - [x] 1. Level identity: each board layout gets a permanent ID and a name.
-- [ ] 2. Level Data asset: ordered list of levels; drag to reorder in the Inspector, with a Check button. *You create the asset.*
-- [ ] 3. 5 dummy levels: Inspector button fills each; a test plays a full solution of every one. *You create the assets.*
+- [x] 2. Level Data asset: ordered list of levels; drag to reorder in the Inspector, with a Check button. *You create the asset.*
+- [x] 3. 5 dummy levels, made by hand by the designer. Fill button and solution test dropped: the levels are placeholders until the generator.
 - [ ] 4. Level flow (code only): current level, next level, finished. Tests.
 - [ ] 5. Game scene plays Level Data: starts at level 1; when the last block is fully out, a short adjustable pause, then the next board. Different board sizes and doors work.
 - [ ] 6. After the last level: stop, with a placeholder "No more levels" message.
