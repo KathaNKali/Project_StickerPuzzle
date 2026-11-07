@@ -34,6 +34,7 @@ Lets the designer create, check, save and order levels (Phase 2).
 **Generator**
 - Seeded and deterministic. Changing the seed gives a different board.
 - Reverse construction: place blocks in reverse removal order, so each block has a path to its exit among the blocks placed before it. See [decision 003](../decisions/003-reverse-construction.md).
+- If a placement run gets stuck, the generator starts a fresh run on the same seeded sequence (up to 100), so the same seed still gives the same board.
 - Prefer placements that later blocks will obstruct, so the puzzle has tension.
 - Block colors come from the door colors. The designer sets an exact number of blocks per color, not a weight (designer, 2026-11-07).
 - Difficulty, first pass (cheap measures, from the generator's own solution): after Create, show fill, blocked at start, chain length, detours, solution length, color mix and tight doors. Settings hold a min and max for blocked at start, chain length and detours; Create tries seeds until the board is in range, and says so plainly if it cannot (designer, 2026-11-07).

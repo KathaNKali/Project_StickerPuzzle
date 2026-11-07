@@ -358,6 +358,18 @@ namespace StickerPuzzle.Core
                 return false;
             }
 
+            RemoveBlock(block);
+            return true;
+        }
+
+        /// <summary>
+        /// Takes the block off the board without any exit rule. For tools such as the generator,
+        /// never for play. Block IDs are not reused.
+        /// </summary>
+        public void RemoveBlock(Block block)
+        {
+            RequireOnBoard(block);
+
             var cells = block.Shape.Cells;
             for (var i = 0; i < cells.Count; i++)
             {
@@ -365,7 +377,6 @@ namespace StickerPuzzle.Core
             }
 
             blocks.Remove(block);
-            return true;
         }
 
         /// <summary>
