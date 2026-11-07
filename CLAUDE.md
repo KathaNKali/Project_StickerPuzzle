@@ -71,8 +71,8 @@ Editor path override: `UNITY_PATH=/path/to/Unity scripts/...`
 - Do not re-read files already in context. Search for the lines needed; read interfaces before implementations.
 - Check commits once per group of tasks, not after every task.
 - Do not scan project-wide unless looking for a specific problem.
-- Start a fresh session for each phase or system group; handover lives in STATUS.md and the task list.
-- Say so when a session has grown long.
+- Start a fresh session for each phase (designer, 2026-11-07); handover lives in STATUS.md and the task list.
+- Do not suggest a new session within a phase unless the designer reports high context use.
 
 ## Style with the designer
 Simple, easy-to-understand answers, in points. Short replies, explain trade-offs, challenge risks to scope, performance or architecture. Verify by running tests and builds, not by re-reading code. Never paste file contents back.

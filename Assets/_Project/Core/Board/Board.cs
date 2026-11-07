@@ -149,12 +149,21 @@ namespace StickerPuzzle.Core
         public bool CanMove(Block block, Direction direction)
         {
             RequireOnBoard(block);
+            return CanOccupy(block, block.Position.Step(direction));
+        }
 
-            var target = block.Position.Step(direction);
+        /// <summary>
+        /// True if the block would fit at this position: every cell on the board and either free
+        /// or already part of this same block. Does not check that a route there exists.
+        /// </summary>
+        public bool CanOccupy(Block block, GridPosition position)
+        {
+            RequireOnBoard(block);
+
             var cells = block.Shape.Cells;
             for (var i = 0; i < cells.Count; i++)
             {
-                var cell = target + cells[i];
+                var cell = position + cells[i];
                 if (!IsInside(cell))
                 {
                     return false;
@@ -281,6 +290,16 @@ namespace StickerPuzzle.Core
         public bool CanExitThroughDoor(Block block, Door door)
         {
             RequireOnBoard(block);
+            return CanExitThroughDoorAt(block, door, block.Position);
+        }
+
+        /// <summary>
+        /// The same exit rule as <see cref="CanExitThroughDoor"/>, for the block as if it stood at this
+        /// position. Lets the pathfinder test spots without moving the block. Ignores other blocks.
+        /// </summary>
+        public bool CanExitThroughDoorAt(Block block, Door door, GridPosition position)
+        {
+            RequireOnBoard(block);
 
             if (door == null)
             {
@@ -297,8 +316,8 @@ namespace StickerPuzzle.Core
                 return false;
             }
 
-            var minX = block.Position.X;
-            var minY = block.Position.Y;
+            var minX = position.X;
+            var minY = position.Y;
             var maxX = minX + block.Shape.Width - 1;
             var maxY = minY + block.Shape.Height - 1;
 
