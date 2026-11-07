@@ -36,7 +36,10 @@ Lets the designer create, check, save and order levels (Phase 2).
 - Reverse construction: place blocks in reverse removal order, so each block has a path to its exit among the blocks placed before it. See [decision 003](../decisions/003-reverse-construction.md).
 - Prefer placements that later blocks will obstruct, so the puzzle has tension.
 - Must support spawning into a board that already has blocks.
-- Picks shapes only from the [shape catalog](shape-catalog.md).
+- Picks shapes only from the [shape catalog](shape-catalog.md). Rectangles only until the L door rule is settled (designer, 2026-11-07).
+- Never makes a board where a block can touch two same-color doors on opposite sides (designer, 2026-11-07).
+- Seed: typed number, plus a New Seed button for a random one. The seed is saved with the level (designer, 2026-11-07).
+- Build order: minimal engine (tasks 9-13), then the scene (16-18), then tension and stress test (14-15) (designer, 2026-11-07).
 
 ## Data
 Settings: grid width and height; exits (side, position, width, color); block count; shape weights; colors; refill rule; seed mode.

@@ -12,8 +12,15 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Rules: [waves-and-generator](desi
 - [ ] 7. Debug: Reset restarts the current level; Next and Previous buttons.
 - [ ] 8. Full playtest of all 5 levels, then designer feedback. Core gameplay complete.
 
-## Part 2: Generator scene (after Part 1)
-Needs answers first: questions 1, 6 and 9 in [STATUS](STATUS.md).
+## Part 2: Generator scene
+Designer's order: 9-13, then 16-18, then 14-15. Rectangles only; seed typed or New Seed. See [waves-and-generator](design/waves-and-generator.md).
+
+**Part 2 plan (proposed, awaiting approval)**
+- Engine in Core (pure C#, tested): `SeededRandom` (own small generator, not `System.Random`, so every platform matches); `Solution` (ordered list of block ID + door); `Checker` (replays on a copy of the board with the real rules); `GeneratorSettings` record with `FindProblems()`; `Pathfinder` (breadth-first over cells); `Generator.TryCreate(settings, seed, out board, out solution, out problem)`.
+- Data in Game: `GeneratorSettingsAsset` (size, doors, block count, shape weights, colors, seed); `BoardLayoutAsset` gains the solution and seed.
+- Scene: a `GeneratorBootstrap` reuses BoardView to show the board. Buttons sit in its Inspector (an EditorTools editor), not on-screen UI, because Save must create asset files, which only editor code can do. Buttons: Create, New Seed, Check, Play Solution, Save. Works in Play mode.
+- Save: writes a new level asset into a chosen folder, names it, and adds it to the chosen Level Data.
+- You build the Generator scene from written steps (camera, board, GeneratorBootstrap).
 - [ ] 9. Seeded random numbers: same seed gives the same results on every platform.
 - [ ] 10. Saved solution on levels, and the Checker: replays a solution using the real game rules.
 - [ ] 11. Generator settings, with plain-language errors when they cannot work.
