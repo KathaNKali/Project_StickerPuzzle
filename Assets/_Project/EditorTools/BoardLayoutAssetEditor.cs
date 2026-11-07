@@ -62,7 +62,7 @@ namespace StickerPuzzle.EditorTools
 
         private void Check(BoardLayoutAsset layout)
         {
-            if (!TryLoadCatalog(out var catalog, out var catalogProblem))
+            if (!ShapeCatalogLoader.TryLoad(out var catalog, out var catalogProblem))
             {
                 checkMessage = catalogProblem;
                 checkMessageType = MessageType.Error;
@@ -79,26 +79,5 @@ namespace StickerPuzzle.EditorTools
             }
         }
 
-        private static bool TryLoadCatalog(out ShapeCatalog catalog, out string problem)
-        {
-            catalog = null;
-
-            var guids = AssetDatabase.FindAssets("t:" + nameof(ShapeCatalogAsset));
-            if (guids.Length == 0)
-            {
-                problem = "No Shape Catalog asset found in the project.";
-                return false;
-            }
-
-            var asset = AssetDatabase.LoadAssetAtPath<ShapeCatalogAsset>(AssetDatabase.GUIDToAssetPath(guids[0]));
-            if (!asset.TryBuild(out catalog, out var errors))
-            {
-                problem = "The Shape Catalog has problems:\n" + string.Join("\n", errors);
-                return false;
-            }
-
-            problem = null;
-            return true;
-        }
     }
 }

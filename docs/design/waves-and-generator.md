@@ -24,7 +24,8 @@ Lets the designer create, check, save and order levels (Phase 2).
 - **Save** stores the level under a name in Level Data.
 
 **Level Data**
-- A list where levels can be renamed and rearranged.
+- A list where levels can be renamed and rearranged. It points directly at the level assets; saves use only IDs. See [decision 008](../decisions/008-level-data-asset-references.md).
+- **Check Levels** reports an empty list, empty rows, a level listed twice, missing or shared IDs, and each level's board problems.
 - Each level has a hidden permanent ID, so renaming or reordering never breaks a player's save.
 - The editor assigns the ID automatically. A copied level gets its own new ID, and its name resets to its file name.
 - Inspector > Reset wipes the ID, so that level gets a new one. Never use it on a released level.

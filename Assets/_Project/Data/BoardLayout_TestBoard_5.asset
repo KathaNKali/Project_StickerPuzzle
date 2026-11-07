@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151eae00a32404491bc90b822fffef2a, type: 3}
+  m_Name: BoardLayout_TestBoard_5
+  m_EditorClassIdentifier: StickerPuzzle.Game::StickerPuzzle.Game.BoardLayoutAsset
+  levelName: 
+  levelId: 8646ce50bd4c4992aa126ced2e433561
+  width: 8
+  height: 8
+  doors:
+  - side: 2
+    position: 2
+    openingSize: 2
+    color: red
+  - side: 3
+    position: 2
+    openingSize: 3
+    color: blue
+  - side: 0
+    position: 2
+    openingSize: 2
+    color: yellow
+  blocks:
+  - shapeId: 2x2
+    position: {x: 3, y: 0}
+    color: red
+  - shapeId: 1x1
+    position: {x: 2, y: 3}
+    color: red
+  - shapeId: 2x1
+    position: {x: 0, y: 4}
+    color: blue
+  - shapeId: 2x2
+    position: {x: 0, y: 0}
+    color: blue
+  - shapeId: 1x2
+    position: {x: 5, y: 0}
+    color: yellow
+  - shapeId: 2x3
+    position: {x: 4, y: 5}
+    color: yellow

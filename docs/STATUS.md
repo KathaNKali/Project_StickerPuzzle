@@ -9,10 +9,10 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Task 1 (level identity) passed: 286 tests and the designer's Ctrl+D check. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
+- Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Task 1 (level identity) is committed. Task 2 (Level Data) is written; not yet compiled or tested in Unity, and the designer still creates the asset. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
 
 ## Next
-- Phase 2, task 2 (Level Data asset), once task 1 is committed and the plan is approved.
+- Designer checks task 2, then Phase 2 task 3 (5 dummy levels).
 - Later: Phase 1 tasks 21-22 in [phase-1-tasks](phase-1-tasks.md).
 
 ## Blockers
