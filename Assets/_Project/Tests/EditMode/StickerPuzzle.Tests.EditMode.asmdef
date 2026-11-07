@@ -5,6 +5,7 @@
         "StickerPuzzle.Core",
         "StickerPuzzle.Game",
         "StickerPuzzle.Presentation",
+        "StickerPuzzle.EditorTools",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

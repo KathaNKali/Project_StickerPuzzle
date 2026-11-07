@@ -26,6 +26,8 @@ Lets the designer create, check, save and order levels (Phase 2).
 **Level Data**
 - A list where levels can be renamed and rearranged.
 - Each level has a hidden permanent ID, so renaming or reordering never breaks a player's save.
+- The editor assigns the ID automatically. A copied level gets its own new ID, and its name resets to its file name.
+- Inspector > Reset wipes the ID, so that level gets a new one. Never use it on a released level.
 
 **Generator**
 - Seeded and deterministic. Changing the seed gives a different board.

@@ -3,7 +3,7 @@
 Goal and done criteria: [ROADMAP](ROADMAP.md). Rules: [waves-and-generator](design/waves-and-generator.md). Why this order: [decision 007](decisions/007-waves-before-generator.md). Do one at a time, in order. Routine steps: [WORKFLOW](WORKFLOW.md).
 
 ## Part 1: Wave system with 5 dummy levels
-- [ ] 1. Level identity: each board layout gets a permanent ID and a name.
+- [x] 1. Level identity: each board layout gets a permanent ID and a name.
 - [ ] 2. Level Data asset: ordered list of levels; drag to reorder in the Inspector, with a Check button. *You create the asset.*
 - [ ] 3. 5 dummy levels: Inspector button fills each; a test plays a full solution of every one. *You create the assets.*
 - [ ] 4. Level flow (code only): current level, next level, finished. Tests.
@@ -13,7 +13,7 @@ Goal and done criteria: [ROADMAP](ROADMAP.md). Rules: [waves-and-generator](desi
 - [ ] 8. Full playtest of all 5 levels, then designer feedback. Core gameplay complete.
 
 ## Part 2: Generator scene (after Part 1)
-Needs answers first: questions 1, 6 and 10 in [STATUS](STATUS.md).
+Needs answers first: questions 1, 6 and 9 in [STATUS](STATUS.md).
 - [ ] 9. Seeded random numbers: same seed gives the same results on every platform.
 - [ ] 10. Saved solution on levels, and the Checker: replays a solution using the real game rules.
 - [ ] 11. Generator settings, with plain-language errors when they cannot work.

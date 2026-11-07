@@ -32,14 +32,48 @@ namespace StickerPuzzle.Game
             public string color;
         }
 
+        [Tooltip("The name shown in tools. Free to change.")]
+        [SerializeField] private string levelName;
+
+        // Permanent: saves will refer to it, so renaming or reordering never breaks a save.
+        [SerializeField, HideInInspector] private string levelId;
+
         [SerializeField] private int width = 6;
         [SerializeField] private int height = 6;
         [SerializeField] private List<DoorEntry> doors = new List<DoorEntry>();
         [SerializeField] private List<BlockEntry> blocks = new List<BlockEntry>();
 
+        public string LevelId => levelId;
+
+        /// <summary>The level's name, or the asset's file name if none is set.</summary>
+        public string DisplayName => string.IsNullOrWhiteSpace(levelName) ? name : levelName;
+
         public int DoorCount => doors.Count;
 
         public int BlockCount => blocks.Count;
+
+        /// <summary>Gives the level a permanent ID if it has none. True if one was created.</summary>
+        public bool EnsureLevelId()
+        {
+            if (!string.IsNullOrEmpty(levelId))
+            {
+                return false;
+            }
+
+            levelId = Guid.NewGuid().ToString("N");
+            return true;
+        }
+
+        /// <summary>Editor tools only, for copied levels. Using this on a released level would break saves.</summary>
+        public void AssignNewLevelId()
+        {
+            levelId = Guid.NewGuid().ToString("N");
+        }
+
+        public void SetLevelName(string newName)
+        {
+            levelName = newName;
+        }
 
         public void SetSize(int newWidth, int newHeight)
         {

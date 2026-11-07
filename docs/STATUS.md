@@ -9,10 +9,10 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Part 1 not started yet. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
+- Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Task 1 (level identity) passed: 286 tests and the designer's Ctrl+D check. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
 
 ## Next
-- Phase 2, task 1 (level identity), ideally in a fresh session.
+- Phase 2, task 2 (Level Data asset), once task 1 is committed and the plan is approved.
 - Later: Phase 1 tasks 21-22 in [phase-1-tasks](phase-1-tasks.md).
 
 ## Blockers
@@ -27,7 +27,7 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 
 ## Not in git
 - Unity tutorial template files (`Assets/TutorialInfo`, `Assets/Readme.asset`): only the two scripts are in git, in commit `cdb7a37`; the rest is not. Not used by the game. See question 5.
-- `Assets/_Recovery/0.unity`: a Unity recovery scene from 5 Nov, 13:00. Ignored, not deleted. See question 9.
+- `Assets/_Recovery/0.unity`: a Unity recovery scene from 5 Nov, 13:00. Ignored, not deleted. See question 11.
 - `Assets/Resources`: empty folder Unity created.
 
 ## Questions for the designer
@@ -39,6 +39,6 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 6. **Opposite doors (Phase 2):** on a board as narrow as a block is wide, the block can touch same-color doors on both sides. Which one should it use, or should this be disallowed too?
 7. **Corner doors:** same-color doors sharing a corner are disallowed for now. Revisit later.
 8. **Names:** final game name and Android ID. Current placeholders: "Sticker Puzzle", `com.kathankali.stickerpuzzle`.
-10. **Seed (generator):** a typed number plus a New Seed button? Recommended.
-11. **Refill threshold:** build only "fully cleared" for now? Recommended, since fixed levels can differ in board size.
-9. **Recovery scene:** does `Assets/_Recovery/0.unity` hold anything you need? If not, it can be deleted.
+9. **Seed (generator):** a typed number plus a New Seed button? Recommended.
+10. **Refill threshold:** build only "fully cleared" for now? Recommended, since fixed levels can differ in board size.
+11. **Recovery scene:** does `Assets/_Recovery/0.unity` hold anything you need? If not, it can be deleted.

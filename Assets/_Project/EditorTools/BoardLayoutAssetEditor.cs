@@ -12,11 +12,23 @@ namespace StickerPuzzle.EditorTools
         private string checkMessage;
         private MessageType checkMessageType;
 
+        private void OnEnable()
+        {
+            var layout = (BoardLayoutAsset)target;
+            if (layout.EnsureLevelId())
+            {
+                EditorUtility.SetDirty(layout);
+                AssetDatabase.SaveAssetIfDirty(layout);
+            }
+        }
+
         public override void OnInspectorGUI()
         {
+            var layout = (BoardLayoutAsset)target;
+            EditorGUILayout.LabelField("Level ID (permanent)", layout.LevelId);
+
             DrawDefaultInspector();
 
-            var layout = (BoardLayoutAsset)target;
             EditorGUILayout.Space();
 
             if (GUILayout.Button("Fill Test Board") && ConfirmFill(layout))

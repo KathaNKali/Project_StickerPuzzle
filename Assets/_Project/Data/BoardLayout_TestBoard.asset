@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151eae00a32404491bc90b822fffef2a, type: 3}
   m_Name: BoardLayout_TestBoard
   m_EditorClassIdentifier: StickerPuzzle.Game::StickerPuzzle.Game.BoardLayoutAsset
+  levelName: TestLevel_01
+  levelId: 07a4f7e0b30f49e8b6a8e02f03cfc785
   width: 8
   height: 8
   doors:
