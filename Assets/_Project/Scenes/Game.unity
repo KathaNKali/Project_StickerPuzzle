@@ -252,9 +252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: StickerPuzzle.Presentation::StickerPuzzle.Presentation.GameBootstrap
   shapeCatalog: {fileID: 11400000, guid: a9d4e72c91ce047979bf9e9cf8ac2c39, type: 2}
-  boardLayout: {fileID: 11400000, guid: 8311d4ed5a5914ff9af2a202bc9d60bf, type: 2}
+  levelData: {fileID: 11400000, guid: 12bfb2857783d4a8e8933841801a3c32, type: 2}
   boardView: {fileID: 751714792}
   boardCamera: {fileID: 2130691339}
+  pauseBetweenWaves: 0.5
 --- !u!4 &706753079
 Transform:
   m_ObjectHideFlags: 0

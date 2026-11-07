@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using StickerPuzzle.Core;
 using UnityEngine;
@@ -43,18 +44,32 @@ namespace StickerPuzzle.Presentation
 
         private readonly Dictionary<int, BlockView> blockViews = new Dictionary<int, BlockView>();
 
-        // Blocks still sliding out. Each one destroys itself when done, which Unity reports as null.
+        // Blocks still sliding out. Each is removed when its exit finishes.
         private readonly List<BlockView> exitingViews = new List<BlockView>();
+
+        // Everything shown is reused between boards instead of being destroyed and rebuilt.
+        private readonly List<GameObject> activeCells = new List<GameObject>();
+        private readonly List<GameObject> activeDoorParts = new List<GameObject>();
+        private readonly Stack<BlockView> freeBlockViews = new Stack<BlockView>();
+        private Transform poolStorage;
+        private PrefabPool cellPool;
+        private PrefabPool partPool;
+        private Action<BlockView> exitFinishedHandler;
+
         private BoardGrid currentGrid;
 
         /// <summary>True while any block is still sliding out through a door.</summary>
-        public bool IsExitPlaying
+        public bool IsExitPlaying => exitingViews.Count > 0;
+
+        private void Awake()
         {
-            get
-            {
-                exitingViews.RemoveAll(view => view == null);
-                return exitingViews.Count > 0;
-            }
+            poolStorage = new GameObject("Pool").transform;
+            poolStorage.SetParent(transform, false);
+            cellPool = new PrefabPool(cellPrefab, poolStorage);
+            partPool = new PrefabPool(partPrefab, poolStorage);
+
+            // Made once, so starting an exit does not create a new callback each time.
+            exitFinishedHandler = HandleExitFinished;
         }
 
         private void OnValidate()
@@ -90,8 +105,15 @@ namespace StickerPuzzle.Presentation
                 view.PlayExit(
                     currentGrid.CellToWorld(block.Position),
                     currentGrid.GetExitPosition(block, door, ExitClearance),
-                    exitSpeed);
+                    exitSpeed,
+                    exitFinishedHandler);
             }
+        }
+
+        private void HandleExitFinished(BlockView view)
+        {
+            exitingViews.Remove(view);
+            ReleaseBlock(view);
         }
 
         public void ShowBoard(Board board)
@@ -109,15 +131,65 @@ namespace StickerPuzzle.Presentation
             ShowBlocks(board, currentGrid);
         }
 
+        /// <summary>Puts everything from the old board back in the pools.</summary>
         private void ClearBoard()
         {
+            foreach (var view in blockViews.Values)
+            {
+                ReleaseBlock(view);
+            }
+
+            foreach (var view in exitingViews)
+            {
+                ReleaseBlock(view);
+            }
+
             blockViews.Clear();
             exitingViews.Clear();
 
-            for (var i = transform.childCount - 1; i >= 0; i--)
+            foreach (var cell in activeCells)
             {
-                Destroy(transform.GetChild(i).gameObject);
+                cellPool.Release(cell);
             }
+
+            foreach (var part in activeDoorParts)
+            {
+                partPool.Release(part);
+            }
+
+            activeCells.Clear();
+            activeDoorParts.Clear();
+        }
+
+        private BlockView GetBlockView(string blockName)
+        {
+            BlockView view;
+            if (freeBlockViews.Count > 0)
+            {
+                view = freeBlockViews.Pop();
+                view.gameObject.SetActive(true);
+            }
+            else
+            {
+                view = new GameObject().AddComponent<BlockView>();
+            }
+
+            view.name = blockName;
+            view.transform.SetParent(transform, false);
+            return view;
+        }
+
+        private void ReleaseBlock(BlockView view)
+        {
+            var root = view.transform;
+            for (var i = root.childCount - 1; i >= 0; i--)
+            {
+                partPool.Release(root.GetChild(i).gameObject);
+            }
+
+            view.gameObject.SetActive(false);
+            root.SetParent(poolStorage, false);
+            freeBlockViews.Push(view);
         }
 
         private void ShowCells(Board board, BoardGrid grid)
@@ -127,8 +199,10 @@ namespace StickerPuzzle.Presentation
                 for (var x = 0; x < board.Width; x++)
                 {
                     var position = grid.CellToWorld(new GridPosition(x, y), CellWorldHeight);
-                    var cell = Instantiate(cellPrefab, position, Quaternion.identity, transform);
+                    var cell = cellPool.Get(transform);
+                    cell.transform.SetPositionAndRotation(position, Quaternion.identity);
                     cell.name = $"Cell_{x}_{y}";
+                    activeCells.Add(cell);
                 }
             }
         }
@@ -140,6 +214,7 @@ namespace StickerPuzzle.Presentation
                 var part = CreatePart(transform, door.Color, $"Door_{door.Side}_{door.Color}");
                 part.position = grid.GetDoorCenter(door, DoorOutwardOffset, DoorWorldHeight);
                 part.localScale = BoardGrid.GetDoorSize(door, DoorThickness, DoorHeight);
+                activeDoorParts.Add(part.gameObject);
             }
         }
 
@@ -147,10 +222,8 @@ namespace StickerPuzzle.Presentation
         {
             foreach (var block in board.Blocks)
             {
-                var root = new GameObject($"Block_{block.Id}_{block.Shape.Id}_{block.Color}");
-                root.transform.SetParent(transform, false);
-
-                var view = root.AddComponent<BlockView>();
+                var view = GetBlockView($"Block_{block.Id}_{block.Shape.Id}_{block.Color}");
+                var root = view.gameObject;
                 view.Initialize(block);
                 view.PlaceAt(grid.CellToWorld(block.Position));
                 view.SetMotion(moveSpeed, moveSmoothness);
@@ -169,7 +242,7 @@ namespace StickerPuzzle.Presentation
 
         private Transform CreatePart(Transform parent, string colorId, string partName)
         {
-            var part = Instantiate(partPrefab, parent);
+            var part = partPool.Get(parent);
             part.name = partName;
 
             if (colorPalette.TryGetMaterial(colorId, out var material))

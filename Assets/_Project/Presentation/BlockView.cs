@@ -1,3 +1,4 @@
+using System;
 using StickerPuzzle.Core;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ namespace StickerPuzzle.Presentation
         private bool isOnFinalExitLeg;
         private Vector3 exitEndPosition;
         private float exitSpeed;
+        private Action<BlockView> exitFinished;
 
         public Block Model { get; private set; }
 
@@ -54,9 +56,13 @@ namespace StickerPuzzle.Presentation
             return Vector3.Lerp(current, target, 1f - Mathf.Exp(-deltaSeconds / smoothSeconds));
         }
 
+        /// <summary>Sets up the block for a model. Also clears any old exit, so a reused block starts fresh.</summary>
         public void Initialize(Block model)
         {
             Model = model;
+            isExiting = false;
+            isOnFinalExitLeg = false;
+            exitFinished = null;
         }
 
         /// <summary>Sets how the block animates. Both at 0 means moves happen instantly.</summary>
@@ -96,12 +102,14 @@ namespace StickerPuzzle.Presentation
         }
 
         /// <summary>
-        /// Finishes travelling to the block's last cell, slides straight out to the end point,
-        /// then removes itself. Starting from the last cell keeps the exit straight even if the
-        /// visible block was trailing behind the mouse.
+        /// Finishes travelling to the block's last cell, then slides straight out to the end point.
+        /// Starting from the last cell keeps the exit straight even if the visible block was
+        /// trailing behind the mouse. When done, it calls onFinished so the block can be reused;
+        /// with no onFinished, it removes itself.
         /// </summary>
-        public void PlayExit(Vector3 lastCellWorld, Vector3 endWorld, float cellsPerSecond)
+        public void PlayExit(Vector3 lastCellWorld, Vector3 endWorld, float cellsPerSecond, Action<BlockView> onFinished = null)
         {
+            exitFinished = onFinished;
             targetPosition = lastCellWorld;
             exitEndPosition = endWorld;
             exitSpeed = cellsPerSecond;
@@ -150,7 +158,16 @@ namespace StickerPuzzle.Presentation
         {
             if (isExiting)
             {
-                Destroy(gameObject);
+                enabled = false;
+
+                if (exitFinished != null)
+                {
+                    exitFinished(this);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
             else
             {

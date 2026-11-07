@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickerPuzzle.Game::StickerPuzzle.Game.BoardLayoutAsset
   levelName: TestLevel_01
   levelId: 07a4f7e0b30f49e8b6a8e02f03cfc785
-  width: 8
-  height: 8
+  width: 6
+  height: 6
   doors:
   - side: 2
     position: 2

@@ -90,5 +90,19 @@ namespace StickerPuzzle.Tests
             Assert.That(view.enabled, Is.True);
             Object.DestroyImmediate(view.gameObject);
         }
+
+        [Test]
+        public void Initialize_AfterExit_ReusedBlockCanBeLiftedAgain()
+        {
+            var view = new GameObject("TestBlock").AddComponent<BlockView>();
+            view.PlayExit(Vector3.zero, new Vector3(5f, 0f, 0f), 8f);
+
+            view.Initialize(null);
+            view.PlaceAt(Vector3.zero);
+            view.SetHeld(true);
+
+            Assert.That(view.transform.position.y, Is.EqualTo(BlockView.HeldLift));
+            Object.DestroyImmediate(view.gameObject);
+        }
     }
 }
