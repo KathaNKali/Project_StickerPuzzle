@@ -22,11 +22,11 @@ Designer's order: 9-13, then 16-18, then 14-15. Rectangles only; seed typed or N
 - Save: writes a new level asset into a chosen folder, names it, and adds it to the chosen Level Data.
 - You build the Generator scene from written steps (camera, board, GeneratorBootstrap).
 - [x] 9. Seeded random numbers: same seed gives the same results on every platform.
-- [ ] 10. Saved solution on levels, and the Checker: replays a solution using the real game rules.
+- [x] 10. Saved solution on levels, and the Checker: replays a solution using the real game rules.
 - [ ] 11. Generator settings, with plain-language errors when they cannot work.
 - [ ] 12. Pathfinder: finds a block's route to a door it fits, past other blocks.
 - [ ] 13. Reverse construction: place blocks so each has a route among those placed before it.
-- [ ] 14. Tension: prefer placements that block earlier blocks' routes; report a tension score.
+- [ ] 14. Tension and difficulty: prefer placements that block earlier blocks' routes. Report the cheap difficulty measures; min/max for blocked at start, chain length and detours, with seed retries. See [waves-and-generator](design/waves-and-generator.md).
 - [ ] 15. Stress test: thousands of seeds; every board passes the Checker; same seed gives the same board.
 - [ ] 16. Generator scene: enter settings, Create, see the board. *You build the scene.*
 - [ ] 17. Checker button and Play Solution button.

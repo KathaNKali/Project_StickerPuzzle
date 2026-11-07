@@ -35,6 +35,9 @@ Lets the designer create, check, save and order levels (Phase 2).
 - Seeded and deterministic. Changing the seed gives a different board.
 - Reverse construction: place blocks in reverse removal order, so each block has a path to its exit among the blocks placed before it. See [decision 003](../decisions/003-reverse-construction.md).
 - Prefer placements that later blocks will obstruct, so the puzzle has tension.
+- Block colors come from the door colors. The designer sets an exact number of blocks per color, not a weight (designer, 2026-11-07).
+- Difficulty, first pass (cheap measures, from the generator's own solution): after Create, show fill, blocked at start, chain length, detours, solution length, color mix and tight doors. Settings hold a min and max for blocked at start, chain length and detours; Create tries seeds until the board is in range, and says so plainly if it cannot (designer, 2026-11-07).
+- Difficulty, later (needs full search): minimum moves, traps, number of solutions, choices per turn (designer, 2026-11-07).
 - Must support spawning into a board that already has blocks.
 - Picks shapes only from the [shape catalog](shape-catalog.md). Rectangles only until the L door rule is settled (designer, 2026-11-07).
 - Never makes a board where a block can touch two same-color doors on opposite sides (designer, 2026-11-07).
@@ -42,12 +45,12 @@ Lets the designer create, check, save and order levels (Phase 2).
 - Build order: minimal engine (tasks 9-13), then the scene (16-18), then tension and stress test (14-15) (designer, 2026-11-07).
 
 ## Data
-Settings: grid width and height; exits (side, position, width, color); block count; shape weights; colors; refill rule; seed mode.
+Settings: grid width and height (at least 5x5); min and max doors (default 2 and 4); exits (side, position, width, color); exact block count per color; shape weights; colors; refill rule; seed mode.
 
 Level: permanent ID, name, settings, exact board, solution. Authored as a ScriptableObject and converted to a plain C# record for Core.
 
 ## Later phases
-Hand editing of boards, and a full-search Checker with a "Too complex to tell" answer.
+Hand editing of generated boards (designer confirmed later, 2026-11-07), and a full-search Checker with a "Too complex to tell" answer.
 
 ## Public interface
 Defined in Phase 2.

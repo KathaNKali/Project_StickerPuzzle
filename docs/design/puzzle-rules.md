@@ -11,7 +11,8 @@ The rules of the board, blocks and doors. Implemented in Core (Phase 1). All rul
 **Doors**
 - A door sits on a board edge and has a color, position and opening size.
 - Opening size is measured along its edge: rows covered on left/right edges, columns covered on top/bottom edges.
-- Boards have 2 to 4 exits. Checked when a board is built from its layout, since a board gets its doors one at a time.
+- Boards are at least 5x5 (designer, 2026-11-07). Checked for hand-made levels and generator settings.
+- Boards have 2 to 4 exits by default. Checked when a board is built from its layout, since a board gets its doors one at a time. Generator settings can change the limits (designer, 2026-11-07).
 - Two doors of the same color cannot share a board corner, so a block in a corner can never touch two of its own doors (designer: not allowed for now, may revisit).
 - A door's position is its first column from the left (top/bottom edges) or first row from the bottom (left/right edges).
 

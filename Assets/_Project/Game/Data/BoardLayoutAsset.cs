@@ -12,8 +12,8 @@ namespace StickerPuzzle.Game
     [CreateAssetMenu(fileName = "BoardLayout", menuName = "Sticker Puzzle/Board Layout")]
     public sealed class BoardLayoutAsset : ScriptableObject
     {
-        public const int MinDoors = 2;
-        public const int MaxDoors = 4;
+        public const int MinDoors = Board.MinDoors;
+        public const int MaxDoors = Board.MaxDoors;
 
         [Serializable]
         private sealed class DoorEntry
@@ -196,9 +196,9 @@ namespace StickerPuzzle.Game
             board = null;
             errors = new List<string>();
 
-            if (width < 1 || height < 1)
+            if (width < Board.MinPlayableSize || height < Board.MinPlayableSize)
             {
-                errors.Add($"Board size must be at least 1x1, got {width}x{height}.");
+                errors.Add($"Board size must be at least {Board.MinPlayableSize}x{Board.MinPlayableSize}, got {width}x{height}.");
                 return false;
             }
 

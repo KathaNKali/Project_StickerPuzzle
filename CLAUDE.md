@@ -66,7 +66,8 @@ Editor path override: `UNITY_PATH=/path/to/Unity scripts/...`
 - Do not hand-edit `Library/`, `Temp/`, `Logs/`, `Builds/`, `UserSettings/`.
 
 ## Token rules (strict)
-- Replies stay short. After a task: what changed, checks to do, commit list, pass count. No repeated explanations; refer to [WORKFLOW](docs/WORKFLOW.md) for routine steps.
+- Replies stay short. After a task: what changed, checks to do, commit, pass count.
+- Commit: always give a ready commit message (short title line, then a few bullet lines), plus the files to commit. If the file list is long, give the message and the number of files instead. No repeated explanations; refer to [WORKFLOW](docs/WORKFLOW.md) for routine steps.
 - Do not re-read files already in context. Search for the lines needed; read interfaces before implementations.
 - Check commits once per group of tasks, not after every task.
 - Do not scan project-wide unless looking for a specific problem.

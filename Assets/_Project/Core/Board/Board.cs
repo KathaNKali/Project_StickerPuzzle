@@ -9,6 +9,13 @@ namespace StickerPuzzle.Core
     /// </summary>
     public sealed class Board
     {
+        /// <summary>Default door count for a playable board (puzzle-rules). Generator settings can change it.</summary>
+        public const int MinDoors = 2;
+        public const int MaxDoors = 4;
+
+        /// <summary>Smallest playable board, in cells per side (designer, 2026-11-07). Rule tests may use smaller boards.</summary>
+        public const int MinPlayableSize = 5;
+
         private readonly Block[] occupancy;
         private readonly List<Block> blocks = new List<Block>();
         private readonly List<Door> doors = new List<Door>();

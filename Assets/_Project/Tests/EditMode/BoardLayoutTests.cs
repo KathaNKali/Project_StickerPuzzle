@@ -133,6 +133,8 @@ namespace StickerPuzzle.Tests
 
         [TestCase(0, 6)]
         [TestCase(6, 0)]
+        [TestCase(4, 6)]
+        [TestCase(6, 4)]
         public void TryBuild_InvalidSize_Fails(int width, int height)
         {
             layout.SetSize(width, height);
