@@ -32,6 +32,16 @@ namespace StickerPuzzle.Game
             public string color;
         }
 
+        [Serializable]
+        private sealed class SolutionStepEntry
+        {
+            [Tooltip("The block's place in the Blocks list, counting from 0.")]
+            public int blockId;
+            public List<Direction> moves = new List<Direction>();
+            [Tooltip("The door's place in the Doors list, counting from 0.")]
+            public int doorIndex;
+        }
+
         [Tooltip("The name shown in tools. Free to change.")]
         [SerializeField] private string levelName;
 
@@ -43,6 +53,12 @@ namespace StickerPuzzle.Game
         [SerializeField] private List<DoorEntry> doors = new List<DoorEntry>();
         [SerializeField] private List<BlockEntry> blocks = new List<BlockEntry>();
 
+        [Tooltip("The generator seed this level was made from. Hand-made levels ignore it.")]
+        [SerializeField] private int seed;
+
+        [Tooltip("One drag per step, in order. The Checker replays it with the real rules.")]
+        [SerializeField] private List<SolutionStepEntry> solution = new List<SolutionStepEntry>();
+
         public string LevelId => levelId;
 
         /// <summary>The level's name, or the asset's file name if none is set.</summary>
@@ -51,6 +67,48 @@ namespace StickerPuzzle.Game
         public int DoorCount => doors.Count;
 
         public int BlockCount => blocks.Count;
+
+        public int Seed => seed;
+
+        public bool HasSolution => solution.Count > 0;
+
+        /// <summary>The saved solution as a fresh Core record, or null if none is saved.</summary>
+        public Solution GetSolution()
+        {
+            if (solution.Count == 0)
+            {
+                return null;
+            }
+
+            var steps = new List<SolutionStep>(solution.Count);
+            foreach (var entry in solution)
+            {
+                steps.Add(new SolutionStep(entry.blockId, entry.moves, entry.doorIndex));
+            }
+
+            return new Solution(steps);
+        }
+
+        /// <summary>Replaces the saved solution and seed.</summary>
+        public void SetSolution(Solution newSolution, int newSeed)
+        {
+            if (newSolution == null)
+            {
+                throw new ArgumentNullException(nameof(newSolution));
+            }
+
+            seed = newSeed;
+            solution.Clear();
+            foreach (var step in newSolution.Steps)
+            {
+                solution.Add(new SolutionStepEntry
+                {
+                    blockId = step.BlockId,
+                    moves = new List<Direction>(step.Moves),
+                    doorIndex = step.DoorIndex,
+                });
+            }
+        }
 
         /// <summary>Gives the level a permanent ID if it has none. True if one was created.</summary>
         public bool EnsureLevelId()
@@ -92,7 +150,7 @@ namespace StickerPuzzle.Game
         }
 
         /// <summary>
-        /// Replaces everything with the temporary Phase 1 test board: 6x6, 3 doors, 6 blocks, no
+        /// Replaces everything with the temporary Phase 1 test board and its solution: 6x6, 3 doors, 6 blocks, no
         /// L shapes. BoardLayoutTests plays through a full solution, so it is proven clearable.
         /// </summary>
         public void FillTestBoard()
@@ -111,6 +169,17 @@ namespace StickerPuzzle.Game
             AddBlock("2x2", 0, 0, "blue");
             AddBlock("1x2", 5, 0, "yellow");
             AddBlock("2x1", 4, 5, "yellow");
+
+            const Direction U = Direction.Up, L = Direction.Left, R = Direction.Right;
+            SetSolution(new Solution(new[]
+            {
+                new SolutionStep(5, new[] { L, L }, 2),                // yellow 2x1 out the top
+                new SolutionStep(1, new[] { L, L }, 0),                // red 1x1 out the left
+                new SolutionStep(2, new[] { R, R, R, R }, 1),          // blue 2x1 out the right
+                new SolutionStep(0, new[] { U, U, L, L, L }, 0),       // red 1x2 out the left
+                new SolutionStep(4, new[] { U, U, U, U, L, L }, 2),    // yellow 1x2 out the top
+                new SolutionStep(3, new[] { R, R, R, R, U, U }, 1),    // blue 2x2 out the right
+            }), 0);
         }
 
         /// <summary>

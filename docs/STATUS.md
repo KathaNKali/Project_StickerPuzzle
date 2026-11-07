@@ -11,8 +11,10 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 ## In progress
 - Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Tasks 1-3 done. Tasks 4-5 (level flow, waves in the Game scene) and board pooling (cells, doors and blocks reused between waves) written; not yet compiled, tested or played. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
 
+- Generator (Part 2): task 9 passed (326). Task 10 written: `Core/Solving/Solution.cs` and `Checker.cs`, `Board.Clone()` and `GetBlockById()`, and `BoardLayoutAsset` now holds a seed and a solution (the test board has its solution filled in). Each solution step stores the block ID, its moves and the door, so the Checker replays the moves exactly and Play Solution can show them. 20 new tests (`CheckerTests`, `LevelSolutionTests`). Core was compiled and checked outside Unity. Waiting for the designer's EditMode run: expected 346 passes.
+
 ## Next
-- Generator (Part 2), in a fresh session: plan approved order is tasks 9-13, then 16-18, then 14-15. Questions 6 and 9 answered (see waves-and-generator). The plan is in phase-2-tasks (Part 2 plan) and needs the designer's approval before any code.
+- Generator (Part 2): approved order is tasks 9-13, then 16-18, then 14-15. Plan in phase-2-tasks (Part 2 plan). After task 10 passes, task 11 (generator settings with plain-language errors).
 - Parked by the designer: pooling and waves playtest (tasks 4-8). Pooling code is uncommitted and untested; the generator scene reuses BoardView, so test pooling before or with task 16.
 - Later: Phase 1 tasks 21-22 in [phase-1-tasks](phase-1-tasks.md).
 

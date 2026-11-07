@@ -30,6 +30,46 @@ namespace StickerPuzzle.Core
 
         public int Height { get; }
 
+        /// <summary>
+        /// An independent copy: same size, doors and blocks, with the same block IDs.
+        /// Changing the copy never changes this board. Doors are shared because they never change.
+        /// </summary>
+        public Board Clone()
+        {
+            var copy = new Board(Width, Height);
+            copy.doors.AddRange(doors);
+            copy.nextBlockId = nextBlockId;
+
+            for (var i = 0; i < blocks.Count; i++)
+            {
+                var source = blocks[i];
+                var block = new Block(source.Id, source.Shape, source.Position, source.Color);
+                copy.blocks.Add(block);
+
+                var cells = block.Shape.Cells;
+                for (var c = 0; c < cells.Count; c++)
+                {
+                    copy.occupancy[copy.IndexOf(block.Position + cells[c])] = block;
+                }
+            }
+
+            return copy;
+        }
+
+        /// <summary>The block with this ID, or null if it is not on the board.</summary>
+        public Block GetBlockById(int id)
+        {
+            for (var i = 0; i < blocks.Count; i++)
+            {
+                if (blocks[i].Id == id)
+                {
+                    return blocks[i];
+                }
+            }
+
+            return null;
+        }
+
         public IReadOnlyList<Block> Blocks => blocks;
 
         public IReadOnlyList<Door> Doors => doors;
