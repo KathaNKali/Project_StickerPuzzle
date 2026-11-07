@@ -7,6 +7,9 @@ Lets the designer create, check, save and order levels (Phase 2).
 
 ## Rules
 **Levels in play**
+- Built in two parts: first the wave system with 5 hand-made dummy levels, then the generator. See [decision 007](../decisions/007-waves-before-generator.md).
+- Only "fully cleared" spawning is built for now (assumption, designer has not confirmed).
+- When the last block is fully out, a short adjustable pause, then the next board (assumption; can be tuned).
 - Levels are fixed: every player gets the same saved boards in the same order. See [decision 006](../decisions/006-fixed-levels.md).
 - A new level spawns only when the refill threshold is reached. The threshold is a setting; default 0 means fully cleared.
 - Different levels can have different boards. Colors may repeat across blocks.

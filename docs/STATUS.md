@@ -9,10 +9,10 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 - Portrait set. New phase order and fixed levels recorded.
 
 ## In progress
-- Phase 2 (levels): plan proposed in [phase-2-tasks](phase-2-tasks.md), waiting for designer approval and answers. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
+- Phase 2: waves first, then generator ([phase-2-tasks](phase-2-tasks.md)). Part 1 not started yet. Phase 1 tasks 1-20 passed; 21-22 deferred by the designer. The scene uses a stacked UI camera (designer's choice).
 
 ## Next
-- Phase 2, task 1, once approved.
+- Phase 2, task 1 (level identity), ideally in a fresh session.
 - Later: Phase 1 tasks 21-22 in [phase-1-tasks](phase-1-tasks.md).
 
 ## Blockers
@@ -39,4 +39,6 @@ Plan and phases: [ROADMAP](ROADMAP.md). Phase 0 is finished once the first commi
 6. **Opposite doors (Phase 2):** on a board as narrow as a block is wide, the block can touch same-color doors on both sides. Which one should it use, or should this be disallowed too?
 7. **Corner doors:** same-color doors sharing a corner are disallowed for now. Revisit later.
 8. **Names:** final game name and Android ID. Current placeholders: "Sticker Puzzle", `com.kathankali.stickerpuzzle`.
+10. **Seed (generator):** a typed number plus a New Seed button? Recommended.
+11. **Refill threshold:** build only "fully cleared" for now? Recommended, since fixed levels can differ in board size.
 9. **Recovery scene:** does `Assets/_Recovery/0.unity` hold anything you need? If not, it can be deleted.
